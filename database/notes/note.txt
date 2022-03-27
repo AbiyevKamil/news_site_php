@@ -1,0 +1,1 @@
+Print edilen 1 isset methodundan return edilmish ola biler.
