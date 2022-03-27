@@ -1,5 +1,21 @@
 <?= include "./components/header.php" ?>
+<?= include "./queries/data/get_news.php" ?>
 
+<?php
+if ($_SERVER['REQUEST_METHOD'] === "GET") {
+  $newsId = $_GET["newsId"];
+  if (isset($newsId)) {
+    $data = getNewsById($newsId);
+    if (isset($data)) {
+      $user = $data["user"];
+      $news = $data["news"];
+      $comments = $data["comments"];
+      $latestNews = $data["latestNews"];
+    }
+  } else
+    header("Location: index.php");
+}
+?>
 <!--post-default-->
 <section class="section pt-55">
   <div class="container-fluid">
@@ -8,7 +24,7 @@
         <!--Post-single-->
         <div class="post-single">
           <div class="post-single-image">
-            <img src="assets/img/blog/6.jpg" alt="" />
+            <img src="public/uploads/news/<?= $news["banner"] ?>" alt="" />
           </div>
           <div class="post-single-content">
             <!-- <a href="blog-grid.html" class="categorie">travel</a> -->
@@ -19,25 +35,20 @@
             <div class="post-single-info">
               <ul class="list-inline">
                 <li>
-                  <a href="author.html"><img src="assets/img/author/1.jpg" alt="" /></a>
+                  <a href="author.html"><img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" /></a>
                 </li>
-                <li><a href="author.html">David Smith</a></li>
+                <li><a href="author.html"><?= $user["user_name"] ?></a></li>
                 <li class="dot"></li>
-                <li>January 15, 2021</li>
+                <li><?= $news["created_at"] ?></li>
                 <li class="dot"></li>
-                <li>3 comments</li>
+                <li><?= count($comments) ?> comments</li>
               </ul>
             </div>
           </div>
 
           <div class="post-single-body">
             <p>
-              Its sometimes her behaviour are contented. Do listening am
-              eagerness oh objection collected. Together gay feelings
-              continue juvenile had off Unknown may service subject her
-              letters one bed. Child years noise ye in forty. Loud in this
-              in both hold. My entrance me is disposal bachelor remember
-              relation
+              <?= $news["content"] ?>
             </p>
           </div>
         </div>
@@ -46,25 +57,25 @@
         <!--widget-comments-->
         <div class="widget mb-50">
           <div class="title">
-            <h5>3 Comments</h5>
+            <h5><?= count($comments) ?> Comments</h5>
           </div>
+          <?php foreach ($comments as $comment) { ?>
           <ul class="widget-comments">
             <li class="comment-item">
-              <img src="assets/img/user/1.jpg" alt="" />
+              <img src="public/uploads/users/<?= $comment["user_picture"] ?>" alt="" />
               <div class="content">
                 <ul class="info list-inline">
-                  <li>Mohammed Ali</li>
+                  <li><?= $comment["user_name"] ?></li>
                   <li class="dot"></li>
-                  <li>January 15, 2021</li>
+                  <li><?= $comment["created_at"] ?></li>
                 </ul>
                 <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Repellendus at doloremque adipisci eum placeat quod non
-                  fugiat aliquid sit similique!
+                  <?= $comment["content"] ?>
                 </p>
               </div>
             </li>
           </ul>
+          <?php } ?>
           <!--Leave-comments-->
           <div class="title">
             <h5>Leave a comment</h5>
@@ -95,38 +106,44 @@
         <div class="widget">
           <div class="widget-author">
             <a href="author.html" class="image">
-              <img src="assets/img/author/1.jpg" alt="" />
+              <img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" />
             </a>
             <h6>
-              <span>Hi, I'm David Smith</span>
+              <span>Hi, I'm <?= $user["full_name"] ?></span>
             </h6>
           </div>
         </div>
         <!--/-->
 
+        <?php if (count($latestNews) != 0) { ?>
         <!--widget-latest-posts-->
         <div class="widget">
           <div class="section-title">
             <h5>Latest News</h5>
           </div>
+          <?php foreach ($latestNews as $item) { ?>
+
           <ul class="widget-latest-posts">
             <li class="last-post">
               <div class="image">
                 <a href="post-default.html">
-                  <img src="assets/img/latest/1.jpg" alt="..." />
+                  <img src="public/uploads/news/<?= $item["banner"] ?>" alt="..." />
                 </a>
               </div>
               <div class="content">
                 <p>
-                  <a href="post-default.html">5 Things I Wish I Knew Before Traveling to Malaysia</a>
+                  <a href="news.php?newsId=<?= $item["id"] ?>">
+                    <?= $item["title"] ?>
+                  </a>
                 </p>
-                <small><span class="icon_clock_alt"></span> January 15,
-                  2021</small>
+                <small><span class="icon_clock_alt"></span><?= $item["created_at"] ?></small>
               </div>
             </li>
           </ul>
+          <?php } ?>
         </div>
         <!--/-->
+        <?php } ?>
 
         <!--/-->
       </div>

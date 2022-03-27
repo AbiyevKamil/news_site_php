@@ -46,14 +46,40 @@ function getNewsById($id)
       if (isset($news)) {
         $user = getUser($news["user_id"]);
         $comments = getComments($news["id"]);
+        $latestNews = getLatestNews(5);
         return array(
           "user" => $user,
           "news" => $news,
           "comments" => $comments,
+          "latestNews" => $latestNews,
         );
       }
     }
   }
+}
+
+function getLatestNews($count)
+{
+  $data = array();
+  if (isset($count)) {
+    $sqlToGetLatestNews = "SELECT * FROM `news` WHERE is_deleted = 0 and is_approved = 1 order by created_at DESC LIMIT $count;";
+    $query = runQuery($sqlToGetLatestNews);
+    if ($query) {
+      while ($news = mysqli_fetch_assoc($query)) {
+        if (isset($news)) {
+          $single = array(
+            "id" => $news["id"],
+            "title" => $news["title"],
+            "content" => $news["content"],
+            "banner" => $news["banner"],
+            "created_at" => $news["created_at"],
+          );
+          array_push($data, $single);
+        }
+      }
+    }
+  }
+  return $data;
 }
 
 function getUser($id)
@@ -71,7 +97,6 @@ function getUser($id)
           "full_name" => $user["full_name"],
           "user_name" => $user["user_name"],
           "password" => $user["password"],
-          "profile_picture" => $user["profile_picture"],
           "profile_picture" => $user["profile_picture"],
           "is_admin" => $user["is_admin"],
         );
