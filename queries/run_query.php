@@ -2,7 +2,8 @@
 
 function runQuery($sql)
 {
-  include "../../config/db.php";
+  require "/AppServ/www/sdf/news_site_php/config/db.php";
+  // include "../../config/db.php";
   if ($connection) {
     $query = mysqli_query($connection, $sql);
     return $query;

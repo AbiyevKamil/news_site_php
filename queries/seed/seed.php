@@ -2,8 +2,8 @@
 
 function seedData()
 {
-  include "../../config/db.php";
-  include "./fetch.php";
+  include "/AppServ/www/sdf/news_site_php/config/db.php";
+  include "/AppServ/www/sdf/news_site_php/queries/seed/fetch.php";
 
   if ($connection) {
     $sqlForNewsCount = "select count(*) as count from news";

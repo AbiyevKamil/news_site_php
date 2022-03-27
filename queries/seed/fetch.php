@@ -1,6 +1,6 @@
 <?php
-include "../../libs/simple_html_dom.php";
-
+// include "../../libs/simple_html_dom.php";
+include "/AppServ/www/sdf/news_site_php/libs/simple_html_dom.php";
 function fetchData()
 {
   $data = array();
@@ -20,7 +20,7 @@ function fetchData()
     $single = array(
       "title" => $title,
       // "date" => $date,
-      "img" => $img,
+      "img" => "default_blog.jpeg",
       "details" => $details,
       // "author" => $base_url,
     );
