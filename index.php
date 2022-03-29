@@ -1,5 +1,5 @@
-<?php include "./components/header.php"; ?>
-<?php include "./queries/data/get_news.php"; ?>
+<?= include "./components/header.php" ?>
+<?= include "./queries/data/get_news.php" ?>
 <!--grid-layout-->
 <section class="section pt-85">
   <div class="container-fluid">

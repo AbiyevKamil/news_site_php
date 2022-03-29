@@ -1,20 +1,21 @@
 <?php
+
+require "/AppServ/www/sdf/news_site_php/queries/run_query.php";
+require "/AppServ/www/sdf/news_site_php/queries/seed/seed.php";
+require "/AppServ/www/sdf/news_site_php/queries/data/get_comments.php";
+
 function getNews()
 {
-  require "/AppServ/www/sdf/news_site_php/queries/run_query.php";
-  require "/AppServ/www/sdf/news_site_php/queries/seed/seed.php";
   // require "../run_query.php";
   // seedData();
   $data = array();
   $sqlToGetAllNews = "SELECT * FROM `news` WHERE is_deleted = 0 and is_approved = 1";
   $query = runQuery($sqlToGetAllNews);
-  if (isset($query)) {
+  if ($query) {
     while ($single = mysqli_fetch_assoc($query)) {
       $user_id = $single["user_id"];
-      $sqlToGetUserName = "SELECT * FROM `users` WHERE `id` = '$user_id';";
-      $queryUser = runQuery($sqlToGetUserName);
-      if ($queryUser) {
-        $user = mysqli_fetch_assoc($queryUser);
+      $user = getUser($user_id);
+      if (isset($user)) {
         $user_name = $user["user_name"];
         $profile_picture = $user["profile_picture"];
         array_push($data, array(
@@ -31,4 +32,75 @@ function getNews()
     }
   }
   return $data;
+}
+
+
+function getNewsById($id)
+{
+  if (isset($id)) {
+    $sqlToGetNewsById = "SELECT * FROM `news` WHERE is_deleted = 0 and is_approved = 1 and id = $id";
+
+    $query = runQuery($sqlToGetNewsById);
+    if ($query) {
+      $news = mysqli_fetch_assoc($query);
+      if (isset($news)) {
+        $user = getUser($news["user_id"]);
+        $comments = getComments($news["id"]);
+        $latestNews = getLatestNews(5);
+        return array(
+          "user" => $user,
+          "news" => $news,
+          "comments" => $comments,
+          "latestNews" => $latestNews,
+        );
+      }
+    }
+  }
+}
+
+function getLatestNews($count)
+{
+  $data = array();
+  if (isset($count)) {
+    $sqlToGetLatestNews = "SELECT * FROM `news` WHERE is_deleted = 0 and is_approved = 1 order by created_at DESC LIMIT $count;";
+    $query = runQuery($sqlToGetLatestNews);
+    if ($query) {
+      while ($news = mysqli_fetch_assoc($query)) {
+        if (isset($news)) {
+          $single = array(
+            "id" => $news["id"],
+            "title" => $news["title"],
+            "content" => $news["content"],
+            "banner" => $news["banner"],
+            "created_at" => $news["created_at"],
+          );
+          array_push($data, $single);
+        }
+      }
+    }
+  }
+  return $data;
+}
+
+function getUser($id)
+{
+
+  if (isset($id)) {
+    $sql = "SELECT * FROM `news_site`.`users` WHERE `id` = '$id';";
+    $query = runQuery($sql);
+    if ($query) {
+      $user = mysqli_fetch_assoc($query);
+      if (isset($user)) {
+        return array(
+          "id" => $user["id"],
+          "email" => $user["email"],
+          "full_name" => $user["full_name"],
+          "user_name" => $user["user_name"],
+          "password" => $user["password"],
+          "profile_picture" => $user["profile_picture"],
+          "is_admin" => $user["is_admin"],
+        );
+      }
+    }
+  }
 }
