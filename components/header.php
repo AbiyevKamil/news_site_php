@@ -68,10 +68,10 @@
           <ul style="padding: 0 !important"
             class="navbar-nav d-flex flex-row align-items-center justify-content-center">
             <li class="nav-item m-0">
-              <a class="nav-link m-0" href="index.html"> Login </a>
+              <a class="nav-link m-0" href="login.php"> Login </a>
             </li>
             <li class="nav-item m-0 mr-3">
-              <a class="nav-link" href="contact.html"> Register </a>
+              <a class="nav-link" href="register.php"> Register </a>
             </li>
           </ul>
         </div>
