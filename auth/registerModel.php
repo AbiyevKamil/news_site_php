@@ -13,7 +13,7 @@
             $registeredUser = mysqli_query($connection, $query);
             if(!empty($registeredUser))
             {  
-                header("Location: ../index.php?error=SuccessfullyRegistered");
+                header("Location: ../login.php?status=SuccessfullyRegistered");
             }
             else
             {

@@ -1,4 +1,14 @@
+<?php 
+    // if(isset($_COOKIE["uid"])){
+    //     header("Location: ./index.php?error=AlreadyLoggedIn");
+    // }
+    session_start();
+    if(isset($_SESSION["uid"])){
+        header("Location: ./index.php?error=AlreadyLoggedIn");
+    }
+?>
 <?php include "./components/header.php"; ?>
+
     
     <!--Login-->
     <section class="section pt-55 mb-50">

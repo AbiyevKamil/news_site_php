@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+  session_start();
+?>
 <html lang="en">
 <!-- Mirrored from noonpost.netlify.app/html/template/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 26 Mar 2022 17:47:47 GMT -->
 <!-- Added by HTTrack -->
@@ -62,6 +65,9 @@
       </div>
       <!--/-->
 
+     <?php
+        if(!isset($_SESSION['uid'])){
+     ?>
       <!--navbar-right-->
       <div class="navbar-right ml-auto">
         <div class="">
@@ -90,7 +96,41 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
-    </div>
+      <?php
+        }
+        else{
+      ?>
+       <!--navbar-right-->
+       <div class="navbar-right ml-auto">
+        <div class="">
+          <ul style="padding: 0 !important"
+            class="navbar-nav d-flex flex-row align-items-center justify-content-center">
+            <li class="nav-item m-0">
+              <a class="nav-link m-0" href="auth/logout.php"> Logout </a>
+            </li>
+            <li class="nav-item m-0 mr-3">
+              <a class="nav-link" href="auth/profile.php"> <?= $_SESSION['username'] ?></a>
+            </li>
+          </ul>
+        </div>
+        <div class="theme-switch-wrapper">
+          <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+          </label>
+        </div>
+        <div class="search-icon">
+          <i class="icon_search"></i>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <?php
+        }
+      ?>
   </nav>
   <!--/-->
 </body>
