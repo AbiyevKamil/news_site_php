@@ -88,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
+                  <input type="hidden" name="newsId" value="<?= $news['id'] ?>" > 
                   <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Message*"
                     required="required"></textarea>
                 </div>

@@ -16,8 +16,8 @@ function getComments($news_id)
         $single = array(
           "id" => $comment["id"],
           "content" => $comment["content"],
-          "created_at" => $comment["content"],
-          "news_id" => $comment["content"],
+          "created_at" => $comment["created_at"],
+          "news_id" => $comment["news_id"],
           "user_name" => $user["user_name"],
           "user_picture" => $user["profile_picture"],
         );
