@@ -29,13 +29,13 @@
                         <input type="checkbox" class="custom-control-input" id="rememberMe">
                             <label class="custom-control-label" for="rememberMe">Remember Me</label>
                         </div>
-                        <a href="#" class="btn-link  ml-auto">Forgot Password?</a>
+                        <a href="forgetPassword.php" class="btn-link  ml-auto">Forgot Password?</a>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn-custom" name="submit">Login</button>
                     </div>
                     
-                    <p class="form-group text-center">Don't have an account? <a href="register.html" class="btn-link">Create One</a> </p>
+                    <p class="form-group text-center">Don't have an account? <a href="register.php" class="btn-link">Create One</a> </p>
                     
                 </form>
             </div> 

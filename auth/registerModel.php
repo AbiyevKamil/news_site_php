@@ -13,6 +13,9 @@
             $registeredUser = mysqli_query($connection, $query);
             if(!empty($registeredUser))
             {  
+                // $user_id = $_POST['email'];
+                $_SESSION['email'] = $email;
+                include "/AppServ/www/sdf/news_site_php/auth/sendConfirmCode.php";
                 header("Location: ../login.php?status=SuccessfullyRegistered");
             }
             else
