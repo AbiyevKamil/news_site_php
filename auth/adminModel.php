@@ -1,6 +1,6 @@
 <?php
 session_start();
-    function getUser($username, $password){
+    function getAdmin($username, $password){
         
         $query = "SELECT * FROM `users` WHERE user_name='$username';";
         
@@ -17,14 +17,14 @@ session_start();
                         header("Location: ../login.php?error=wrongPassword");
                     }
                     else{
-                        $queryApproved = "SELECT * FROM `users` WHERE user_name='$username' AND is_approved = 1;";
-                        $userApproved = mysqli_query($connection, $queryApproved);
-                        $userFound = mysqli_num_rows($userApproved);
+                        $queryAdmin = "SELECT * FROM `users` WHERE user_name='$username' AND is_approved = 1 AND is_admin = 1;";
+                        $userAdmin = mysqli_query($connection, $queryAdmin);
+                        $adminFound = mysqli_num_rows($userAdmin);
                         setcookie("uid", $row['id']);
                         $_SESSION['uid'] = $row['id'];
                         $_SESSION['username'] = $row['user_name'];
-                        if($userFound==0){
-                            header("Location: ../notApproved.php");
+                        if($adminFound==0){
+                            header("Location: ../admin.php?error=NotAdmin");
                         }
                         else{                                               
                             header("Location: ../index.php?status=SuccessfullyLoggedin");                        
