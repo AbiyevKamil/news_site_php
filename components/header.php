@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <?php
-  session_start();
+session_start();
 ?>
 <html lang="en">
-<!-- Mirrored from noonpost.netlify.app/html/template/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 26 Mar 2022 17:47:47 GMT -->
-<!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 
 <head>
@@ -20,8 +18,7 @@
   <title>News Site</title>
 
   <!-- Font Google -->
-  <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&amp;display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet" />
 
   <!-- CSS Plugins -->
   <link rel="stylesheet" href="public/assets/css/all.css" />
@@ -46,7 +43,7 @@
     <div class="container-fluid">
       <!--logo-->
       <div class="logo">
-        <a href="index.html">
+        <a href="index.php">
           <img src="public/assets/img/logo-dark.png" alt="" class="logo-dark" />
           <img src="public/assets/img/logo-white.png" alt="" class="logo-white" />
         </a>
@@ -60,7 +57,7 @@
             <a class="nav-link" href="index.php"> Home </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contact.html"> Contact </a>
+            <a class="nav-link" href="contact.php"> Contact </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="addNews.php">Add News</a>
@@ -69,71 +66,66 @@
       </div>
       <!--/-->
 
-     <?php
-        if(!isset($_SESSION['uid'])){
-     ?>
-      <!--navbar-right-->
-      <div class="navbar-right ml-auto">
-        <div class="">
-          <ul style="padding: 0 !important"
-            class="navbar-nav d-flex flex-row align-items-center justify-content-center">
-            <li class="nav-item m-0">
-              <a class="nav-link m-0" href="login.php"> Login </a>
-            </li>
-            <li class="nav-item m-0 mr-3">
-              <a class="nav-link" href="register.php"> Register </a>
-            </li>
-          </ul>
-        </div>
-        <div class="theme-switch-wrapper">
-          <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
-            <div class="slider round"></div>
-          </label>
-        </div>
-        <div class="search-icon">
-          <i class="icon_search"></i>
-        </div>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
       <?php
-        }
-        else{
+      if (!isset($_SESSION['uid'])) {
       ?>
-       <!--navbar-right-->
-       <div class="navbar-right ml-auto">
-        <div class="">
-          <ul style="padding: 0 !important"
-            class="navbar-nav d-flex flex-row align-items-center justify-content-center">
-            <li class="nav-item m-0">
-              <a class="nav-link m-0" href="auth/logout.php"> Logout </a>
-            </li>
-            <li class="nav-item m-0 mr-3">
-              <a class="nav-link" href="auth/profile.php"> <?= $_SESSION['username'] ?></a>
-            </li>
-          </ul>
-        </div>
-        <div class="theme-switch-wrapper">
-          <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
-            <div class="slider round"></div>
-          </label>
-        </div>
-        <div class="search-icon">
-          <i class="icon_search"></i>
-        </div>
+        <!--navbar-right-->
+        <div class="navbar-right ml-auto">
+          <div class="">
+            <ul style="padding: 0 !important" class="navbar-nav d-flex flex-row align-items-center justify-content-center">
+              <li class="nav-item m-0">
+                <a class="nav-link m-0" href="login.php"> Login </a>
+              </li>
+              <li class="nav-item m-0 mr-3">
+                <a class="nav-link" href="register.php"> Register </a>
+              </li>
+            </ul>
+          </div>
+          <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="checkbox">
+              <input type="checkbox" id="checkbox" />
+              <div class="slider round"></div>
+            </label>
+          </div>
+          <div class="search-icon">
+            <i class="icon_search"></i>
+          </div>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
       <?php
-        }
+      } else {
+      ?>
+        <!--navbar-right-->
+        <div class="navbar-right ml-auto">
+          <div class="">
+            <ul style="padding: 0 !important" class="navbar-nav d-flex flex-row align-items-center justify-content-center">
+              <li class="nav-item m-0">
+                <a class="nav-link m-0" href="auth/logout.php"> Logout </a>
+              </li>
+              <li class="nav-item m-0 mr-3">
+                <a class="nav-link" href="/profile.php"> <?= $_SESSION['username'] ?></a>
+              </li>
+            </ul>
+          </div>
+          <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="checkbox">
+              <input type="checkbox" id="checkbox" />
+              <div class="slider round"></div>
+            </label>
+          </div>
+          <div class="search-icon">
+            <i class="icon_search"></i>
+          </div>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      <?php
+      }
       ?>
   </nav>
   <!--/-->

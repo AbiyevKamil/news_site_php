@@ -19,9 +19,6 @@ $categories = getCategories();
             case 'ShortTitle':
               echo 'Title must be longer than 2 characters.';
               break;
-            case 'ShortDescription':
-              echo 'Description must be longer than 15 characters.';
-              break;
             case 'ShortContent':
               echo 'Content must be longer than 100 characters.';
               break;
@@ -51,10 +48,6 @@ $categories = getCategories();
         <div class="form-group">
           <label class="label" for="title">Title</label>
           <input type="text" class="form-control" id="title" name="title" value="">
-        </div>
-        <div class="form-group">
-          <label class="label" for="description">Description</label>
-          <textarea type="text" maxlength="200" class="form-control" id="description" name="description" value=""></textarea>
         </div>
         <div class="form-group">
           <label class="label" for="content">Content</label>

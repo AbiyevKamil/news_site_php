@@ -21,7 +21,6 @@ function getNews()
         array_push($data, array(
           "id" => $single["id"],
           "title" => $single["title"],
-          "description" => $single["description"],
           "content" => $single["content"],
           "banner" => $single["banner"],
           "created_at" => $single["created_at"],
@@ -87,7 +86,7 @@ function getUser($id)
 {
 
   if (isset($id)) {
-    $sql = "SELECT * FROM `news_site`.`users` WHERE `id` = '$id';";
+    $sql = "SELECT * FROM `users` WHERE `id` = '$id';";
     $query = runQuery($sql);
     if ($query) {
       $user = mysqli_fetch_assoc($query);

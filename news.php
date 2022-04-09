@@ -35,9 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
             <div class="post-single-info">
               <ul class="list-inline">
                 <li>
-                  <a href="author.html"><img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" /></a>
+                  <a href="profile.php"><img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" /></a>
                 </li>
-                <li><a href="author.html"><?= $user["user_name"] ?></a></li>
+                <li><a href="profile.php"><?= $user["user_name"] ?></a></li>
                 <li class="dot"></li>
                 <li><?= $news["created_at"] ?></li>
                 <li class="dot"></li>
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
         <!--widget-author-->
         <div class="widget">
           <div class="widget-author">
-            <a href="author.html" class="image">
+            <a href="profile.php" class="image">
               <img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" />
             </a>
             <h6>
