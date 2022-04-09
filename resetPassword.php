@@ -12,7 +12,6 @@
 ?>
 <?php include "./components/header.php"; ?>
 
-    <!--Login-->
     <section class="section pt-55 mb-50">
         <div class="container">
             <div class="sign widget ">

@@ -65,7 +65,7 @@ session_start();
       $delete = mysqli_query($connection, $queryForDeleting);
     }
     
-    $queryForSaving = "INSERT INTO `approval` (`user_id`, `code`, `expire_date`) VALUES ('$user_id', '$code', CURRENT_TIMESTAMP);";
+    $queryForSaving = "INSERT INTO `approval` (`user_id`, `code`, `expire_date`) VALUES ('$user_id', '$code', DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 720 HOUR))";
 
     if($connection){
 

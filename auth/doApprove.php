@@ -9,19 +9,11 @@ session_start();
     $forUser = mysqli_query($connection, $queryForUser);
     if (mysqli_num_rows($forUser) > 0){
       $row = mysqli_fetch_assoc($forUser);
-      // $date = new DateTime($row["expire_date"]);
-      // $date->add(new DateInterval('PT3M'));
-      // if($date < date("Y/m/d H:i:s")){
       $approval_code = $row["code"];
-      // }
-      // else{
-      //   echo "expire_date ";
-      // }
     }
     else{
       echo "No row ";
     }
-    // echo "Code:" . $recovery_code . " | " . $user_id . " | Date: " . $date;
     return $approval_code;
 
   }

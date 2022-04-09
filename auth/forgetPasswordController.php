@@ -65,7 +65,7 @@ session_start();
       $delete = mysqli_query($connection, $queryForDeleting);
     }
     
-    $queryForSaving = "INSERT INTO `recovery` (`user_id`, `code`, `expire_date`) VALUES ('$user_id', '$code', CURRENT_TIMESTAMP);";
+    $queryForSaving = "INSERT INTO `recovery` (`user_id`, `code`, `expire_date`) VALUES ('$user_id', '$code', DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 3 MINUTE));";
 
     if($connection){
 
@@ -95,8 +95,7 @@ session_start();
 
     if($mail){
       $save = saveCodeToDB($to, $code);
-      if($save){        
-          
+      if($save){ 
         header("Location: ../recoveryCode.php");
       }
       else{

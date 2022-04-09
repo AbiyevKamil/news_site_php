@@ -9,8 +9,6 @@
 ?>
 <?php include "./components/header.php"; ?>
 
-    
-    <!--Login-->
     <section class="section pt-55 mb-50">
         <div class="container">
             <div class="sign widget ">
@@ -26,7 +24,7 @@
                         <button type="submit" class="btn-custom" name="submit">Confirm</button>
                     </div>
                     
-                    <p class="form-group text-center">Don't get the code? <a href="auth/sendConfirmCode.php" class="btn-link">Resent</a> </p>
+                    <p class="form-group text-center">Don't get the code? <a href="auth/sendConfirmCode.php" class="btn-link">Resend</a> </p>
                     
                 </form>
             </div> 
