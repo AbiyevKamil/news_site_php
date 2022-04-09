@@ -21,6 +21,7 @@ function getNews()
         array_push($data, array(
           "id" => $single["id"],
           "title" => $single["title"],
+          "description" => $single["description"],
           "content" => $single["content"],
           "banner" => $single["banner"],
           "created_at" => $single["created_at"],

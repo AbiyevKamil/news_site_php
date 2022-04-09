@@ -28,6 +28,7 @@
   <!-- main style -->
   <link rel="stylesheet" href="public/assets/css/style.css" />
   <link rel="stylesheet" href="public/assets/css/custom.css" />
+  <link rel="stylesheet" href="public/assets/css/site.css" />
 </head>
 
 <body>
@@ -53,10 +54,13 @@
       <div class="collapse navbar-collapse" id="main_nav">
         <ul class="navbar-nav ml-auto mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index.html"> Home </a>
+            <a class="nav-link" href="index.php"> Home </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="contact.html"> Contact </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="addNews.php">Add News</a>
           </li>
         </ul>
       </div>
@@ -95,7 +99,7 @@
   <!--/-->
 </body>
 
-</html>-->
+</html>
 </body>
 
 </html>
