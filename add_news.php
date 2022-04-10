@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $category = $_POST['category'];
   $banner = $_FILES["banner"]["name"];
   if (isset($title) && isset($content) && isset($category) && isset($banner)) {
-    if (strlen($title) > 2) {
+    if (strlen($title) > 2 && strlen($title) <= 2) {
       if (strlen($content) > 100) {
         $target_dir = "public/uploads/news/";
         $file_path =  uniqid() . basename($_FILES["banner"]["name"]);
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $sql = "INSERT INTO `news` (`title`, `content`, `banner`, `user_id`, `category_id`) VALUES ('$title', '$content', '$file_path', '$user_id', '$category');";
           $query = runQuery($sql);
           if ($query) {
-            header("Location: index.php?status=NewsSentForCheck");
+            header("Location: index.php?success=NewsSentForCheck");
           } else {
             header("Location: addNews.php?status=NotPosted");
           }
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: addNews.php?status=ShortContent");
       }
     } else {
-      header("Location: addNews.php?status=ShortTitle");
+      header("Location: addNews.php?status=InvalidLengthTitle");
     }
 
     // Image

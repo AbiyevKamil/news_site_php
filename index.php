@@ -3,9 +3,38 @@
 <!--grid-layout-->
 <section class="section pt-55">
   <div class="container-fluid">
-    <?php if (isset($_GET['status'])) { ?>
+    <?php if (isset($_GET['success'])) { ?>
       <div class="alert alert-success p-4 mb-5">
-        News sent to check for publish
+        <?php
+        switch ($_GET['success']) {
+          case 'NewsSentForCheck':
+            echo 'News sent to check for publish';
+            break;
+          case 'SuccessfullyDeletedNews':
+            echo 'News successfully deleted';
+            break;
+        }
+        ?>
+      </div>
+    <?php } ?>
+    <?php if (isset($_GET['status'])) { ?>
+      <div class="alert alert-danger p-4 mb-5">
+        <?php
+        switch ($_GET['status']) {
+          case 'SomethingWentWrongWhileNewsDelete':
+            echo 'Oops, something went wrong. Try again :(';
+            break;
+          case 'NotAllowedToDelete':
+            echo 'You are not allowed to delete this news.';
+            break;
+          case 'NotValidIdForNews':
+            echo 'News does not exist.';
+            break;
+          default:
+            echo 'Oops, something went wrong. Try again :(';
+            break;
+        }
+        ?>
       </div>
     <?php } ?>
     <div class="row">
@@ -52,7 +81,7 @@
           </div>
           <!--/-->
         </div>
-        
+
       <?php
       }
       ?>

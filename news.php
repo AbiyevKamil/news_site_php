@@ -26,18 +26,69 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
           <div class="post-single-image">
             <img src="public/uploads/news/<?= $news["banner"] ?>" alt="" />
           </div>
-          <div class="post-single-content">
+          <div class="post-single-content" style="position: relative">
             <!-- <a href="blog-grid.html" class="categorie">travel</a> -->
-            <h4>
-              What the secrets you will know about jordan petra if visit it
-              one day?
-            </h4>
+            <div class="d-flex align-items-center justify-content-center">
+              <h4 class="flex-1">
+                <?= $news["title"] ?>
+              </h4>
+              <!-- Check for authorization -->
+              <div style="align-self: flex-start;">
+                <div class="dropdown">
+                  <button style=" padding:10px;outline:none;border:none;background-color: transparent;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                    <i style="font-size: 16px;" class="fa-solid fa-ellipsis-vertical"></i>
+                  </button>
+                  <div class="dropdown-menu custom-ddm" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="">Edit</a>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary dropdown-item" data-toggle="modal" data-target="#exampleModal">
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Check for authorization -->
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Do you want to delete this news?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <?= $news["title"] ?>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <form action="delete_news.php" method="POST">
+                      <input type="hidden" value="<?= $news["id"] ?>" name="newsId">
+                      <button type="submit" class="btn btn-danger">Yes</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="post-single-info">
               <ul class="list-inline">
-                <li>
+                <!-- Check for authorization -->
+                <!-- <li>
                   <a href="profile.php"><img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" /></a>
+                </li>-->
+                <li>
+                  <a href="user.php?userId=<?= $user["id"] ?>">
+                    <img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" />
+                  </a>
                 </li>
-                <li><a href="profile.php"><?= $user["user_name"] ?></a></li>
+                <!-- <li>
+                  <a href="profile.php"><?= $user["user_name"] ?></a>
+                </li> -->
+                <li>
+                  <a href="user.php?userId=<?= $user["id"] ?>"><?= $user["user_name"] ?></a>
+                </li>
                 <li class="dot"></li>
                 <li><?= $news["created_at"] ?></li>
                 <li class="dot"></li>
@@ -60,21 +111,21 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
             <h5><?= count($comments) ?> Comments</h5>
           </div>
           <?php foreach ($comments as $comment) { ?>
-          <ul class="widget-comments">
-            <li class="comment-item">
-              <img src="public/uploads/users/<?= $comment["user_picture"] ?>" alt="" />
-              <div class="content">
-                <ul class="info list-inline">
-                  <li><?= $comment["user_name"] ?></li>
-                  <li class="dot"></li>
-                  <li><?= $comment["created_at"] ?></li>
-                </ul>
-                <p>
-                  <?= $comment["content"] ?>
-                </p>
-              </div>
-            </li>
-          </ul>
+            <ul class="widget-comments">
+              <li class="comment-item">
+                <img src="public/uploads/users/<?= $comment["user_picture"] ?>" alt="" />
+                <div class="content">
+                  <ul class="info list-inline">
+                    <li><?= $comment["user_name"] ?></li>
+                    <li class="dot"></li>
+                    <li><?= $comment["created_at"] ?></li>
+                  </ul>
+                  <p>
+                    <?= $comment["content"] ?>
+                  </p>
+                </div>
+              </li>
+            </ul>
           <?php } ?>
           <!--Leave-comments-->
           <div class="title">
@@ -88,9 +139,8 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <input type="hidden" name="newsId" value="<?= $news['id'] ?>" > 
-                  <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Message*"
-                    required="required"></textarea>
+                  <input type="hidden" name="newsId" value="<?= $news['id'] ?>">
+                  <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Message*" required="required"></textarea>
                 </div>
               </div>
               <div class="col-12">
@@ -106,7 +156,10 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
         <!--widget-author-->
         <div class="widget">
           <div class="widget-author">
-            <a href="profile.php" class="image">
+            <!-- <a href="profile.php" class="image">
+              <img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" />
+            </a> -->
+            <a href="user.php?userId=<?= $user["id"] ?>" class="image">
               <img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" />
             </a>
             <h6>
@@ -117,33 +170,39 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
         <!--/-->
 
         <?php if (count($latestNews) != 0) { ?>
-        <!--widget-latest-posts-->
-        <div class="widget">
-          <div class="section-title">
-            <h5>Latest News</h5>
-          </div>
-          <?php foreach ($latestNews as $item) { ?>
+          <!--widget-latest-posts-->
+          <div class="widget">
+            <div class="section-title">
+              <h5>Latest News</h5>
+            </div>
+            <?php foreach ($latestNews as $item) { ?>
 
-          <ul class="widget-latest-posts">
-            <li class="last-post">
-              <div class="image">
-                <a href="post-default.html">
-                  <img src="public/uploads/news/<?= $item["banner"] ?>" alt="..." />
-                </a>
-              </div>
-              <div class="content">
-                <p>
-                  <a href="news.php?newsId=<?= $item["id"] ?>">
-                    <?= $item["title"] ?>
-                  </a>
-                </p>
-                <small><span class="icon_clock_alt"></span><?= $item["created_at"] ?></small>
-              </div>
-            </li>
-          </ul>
-          <?php } ?>
-        </div>
-        <!--/-->
+              <ul class="widget-latest-posts">
+                <li class="last-post">
+                  <div class="image">
+                    <a href="post-default.html">
+                      <img src="public/uploads/news/<?= $item["banner"] ?>" alt="..." />
+                    </a>
+                  </div>
+                  <div class="content">
+                    <p>
+                      <a href="news.php?newsId=<?= $item["id"] ?>">
+                        <?php
+                        if (strlen($item["title"]) > 50) {
+                          echo substr($item["title"], 0, 47) . "...";
+                        } else {
+                          echo $item["title"];
+                        }
+                        ?>
+                      </a>
+                    </p>
+                    <small><span class="icon_clock_alt"></span><?= $item["created_at"] ?></small>
+                  </div>
+                </li>
+              </ul>
+            <?php } ?>
+          </div>
+          <!--/-->
         <?php } ?>
 
         <!--/-->

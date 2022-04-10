@@ -16,3 +16,8 @@
   color: white;
 }
 
+@media (max-width:990px) {
+  .custom-ddm {
+    left: -90px !important;
+  }
+}

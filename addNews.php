@@ -16,8 +16,8 @@ $categories = getCategories();
             case 'AllFieldsRequired':
               echo 'Fill all the fields.';
               break;
-            case 'ShortTitle':
-              echo 'Title must be longer than 2 characters.';
+            case 'InvalidLengthTitle':
+              echo 'Title must be longer than 2 and no longer than 100 characters.';
               break;
             case 'ShortContent':
               echo 'Content must be longer than 100 characters.';
