@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
                     <i style="font-size: 16px;" class="fa-solid fa-ellipsis-vertical"></i>
                   </button>
                   <div class="dropdown-menu custom-ddm" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="">Edit</a>
+                    <a class="dropdown-item" href="editNews.php?newsId=<?= $news['id'] ?>">Edit</a>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary dropdown-item" data-toggle="modal" data-target="#exampleModal">
                       Delete
