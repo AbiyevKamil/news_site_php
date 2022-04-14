@@ -1,5 +1,5 @@
-<?= include "./components/header.php" ?>
-<?= include "./queries/data/get_news.php" ?>
+<?php include "./components/header.php"; ?>
+<?php include "./queries/data/get_news.php"; ?>
 <!--grid-layout-->
 <section class="section pt-55">
   <div class="container-fluid">
@@ -142,4 +142,4 @@
 </section>
 <!--/-->
 
-<?= include "components/footer.php" ?>
+<?php include "./components/footer.php"; ?>

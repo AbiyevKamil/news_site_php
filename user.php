@@ -1,5 +1,5 @@
-<?= include "./components/header.php" ?>
-<?= include "/AppServ/www/sdf/news_site_php/queries/run_query.php" ?>
+<?php include "./components/header.php"; ?>
+<?php include "/AppServ/www/sdf/news_site_php/queries/run_query.php"; ?>
 <?php
 $user = array();
 $data = array();
@@ -22,7 +22,6 @@ if (!$_GET['userId']) {
 
             $category_id = $news['category_id'];
             $sqlCategory = "SELECT * FROM `categories` WHERE id = $category_id";
-            echo $sqlCategory;
             $queryCategory = runQuery($sqlCategory);
             if ($queryCategory) {
               $category = mysqli_fetch_assoc($queryCategory);
@@ -119,4 +118,4 @@ if (!$_GET['userId']) {
   </div>
 </div>
 
-<?= include "components/footer.php" ?>
+<?php include "components/footer.php"; ?>

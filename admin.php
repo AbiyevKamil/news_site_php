@@ -87,5 +87,4 @@ if (isset($_SESSION["uid"])) {
         </div>
     </div>
 </section>
-
-<?= include "components/footer.php" ?>
+<?php include "./components/footer.php"; ?>

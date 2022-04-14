@@ -1,4 +1,4 @@
-<?= include "./components/header.php" ?>
+<?php include "./components/header.php"; ?>
 
 <div class="section d-flex align-items-center justify-content-center">
   <div class="post-single">
@@ -14,4 +14,4 @@
 </div>
 
 
-<?= include "components/footer.php" ?>
+<?php include "./components/footer.php"; ?>

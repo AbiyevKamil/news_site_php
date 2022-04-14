@@ -1,5 +1,5 @@
-<?= include "./components/header.php" ?>
-<?= include "./queries/data/get_categories.php" ?>
+<?php include "./components/header.php"; ?>
+<?php include "./queries/data/get_categories.php"; ?>
 <?php
 if (!$_SESSION["uid"]) {
   header("Location: index.php?status=Unauthorized");
@@ -79,4 +79,4 @@ if (!$_SESSION["uid"]) {
 
   </div>
 </section>
-<?= include "components/footer.php" ?>
+<?php include "./components/footer.php"; ?>

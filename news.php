@@ -1,10 +1,8 @@
-<?= include "./components/header.php" ?>
-<?= include "./queries/data/get_news.php" ?>
+<?php include "./components/header.php"; ?>
+<?php include "./queries/data/get_news.php" ?>
 
 <?php
-
-use phpDocumentor\Reflection\Types\Boolean;
-
+  
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
   $newsId = $_GET["newsId"];
   if ($newsId) {
@@ -31,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
             <img src="public/uploads/news/<?= $news["banner"] ?>" alt="" />
           </div>
           <div class="post-single-content" style="position: relative">
-             <!-- Category search add later -->
+            <!-- Category search add later -->
             <a class="categorie">
               <?= $news["category_name"] ?>
             </a>
@@ -267,4 +265,4 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
 </section>
 <!--/-->
 
-<?= include "components/footer.php" ?>
+<?php include "./components/footer.php"; ?>
