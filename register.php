@@ -41,7 +41,7 @@
                     </div>
                 <?php } ?>
 
-                <form action="auth/doRegister.php" class="sign-form widget-form contact_form " method="POST">
+                <form action="auth/doRegister.php" autocomplete="off" class="sign-form widget-form contact_form " method="POST">
                     <div class="form-group">
                     
                     <input type="text" class="form-control" placeholder="Username*" name="username" value="">
@@ -67,10 +67,10 @@
                     <input type="password" class="form-control" placeholder="Confirm password*" name="re_password" value="">
                     </div>
                     <div class="sign-controls form-group">
-                    <div class="custom-control custom-checkbox">
+                    <!-- <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="rememberMe">
                         <label class="custom-control-label" for="rememberMe">Agree to our <a href="#" class="btn-link">terms & conditions</a> </label>
-                    </div>
+                    </div> -->
                     </div>
                     <div class="form-group">
                     <button type="submit" class="btn-custom" name="submit">Sign Up</button>

@@ -78,7 +78,7 @@ session_start();
 
   function sendApprovalCode(){
     $code = strval(rand(100000,999999));
-    $to = $_SESSION['email'];
+    $to = $_POST['email'];
     $subject = "Welcome to NewsApp";
     $body = "
 

@@ -1,8 +1,8 @@
+<?php include "./components/header.php"; ?>
 <?php 
     // if(isset($_COOKIE["uid"])){
     //     header("Location: ./index.php?error=AlreadyLoggedIn");
     // }
-    session_start();
     if(isset($_SESSION["uid"])){
         header("Location: ./index.php?status=AlreadyLoggedIn");
     }
@@ -10,8 +10,6 @@
         header("Location: ./index.php?status=SomethingWrong");
     }
 ?>
-<?php include "./components/header.php"; ?>
- 
     <section class="section pt-55 mb-50">
         <div class="container">
             <div class="sign widget ">
@@ -42,7 +40,7 @@
                 <?php } ?>
 
                 <p>Please check your email</p>
-                <form  action="auth/checkRecoveryCode.php" class="sign-form widget-form " method="POST">
+                <form  action="auth/checkRecoveryCode.php" autocomplete="off" class="sign-form widget-form " method="POST">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Code*" name="code" value="">
                     </div>
