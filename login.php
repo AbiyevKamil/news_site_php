@@ -54,6 +54,9 @@
                             case 'LoggedOut':
                                 echo 'Successfully logged out.';
                                 break;
+                            case 'Approved':
+                                echo 'Your account approved successfully.';
+                                break;
                             case 'passwordResetedSuccessfully':
                                 echo 'Password reset successfully.';
                                 break;

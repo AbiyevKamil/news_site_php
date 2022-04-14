@@ -20,18 +20,21 @@ session_start();
                     $userApproved = mysqli_query($connection, $queryApproved);
                     $userFound = mysqli_num_rows($userApproved);
                     // setcookie("uid", $row['id']);
-                    $_SESSION['uid'] = $row['id'];
-                    $_SESSION['username'] = $row['user_name'];
-                    $_SESSION['email'] = $row['email'];
+                    
                     // if(!empty($_POST['rememberMe'])){
                     //     setcookie('usernameCoo', $row['user_name'], time()+86400*3);
                     //     setcookie('uidCoo', $row['id'], time()+86400*3);
                     //     setcookie('passwordCoo', $row['password'], time()+86400*3);
                     // }
+                    
+                    $_SESSION['username'] = $row['user_name'];
+                    $_SESSION['email'] = $row['email'];
                     if($userFound==0){
                         header("Location: ../notApproved.php");
+                        $_SESSION['uidNA'] = $row['id'];
                     }
                     else{                                               
+                        $_SESSION['uid'] = $row['id'];
                         header("Location: ../index.php?success=SuccessfullyLoggedin");                        
                     } 
                     
