@@ -1562,6 +1562,7 @@ input:checked + .slider:before {
 }
 
 .post-card-content p {
+  word-wrap: break-word;
   margin-bottom: 30px;
 }
 
@@ -1717,6 +1718,10 @@ input:checked + .slider:before {
 
 .post-single-body {
   margin-top: 30px;
+}
+
+.post-single-body p {
+  word-wrap: break-word;
 }
 
 .post-single-body h5 {

@@ -4,6 +4,7 @@
 if (!$_SESSION["uid"]) {
   header("Location: index.php?status=Unauthorized");
 } else {
+  echo $_SESSION["uid"];
   $categories = getCategories();
 }
 ?>
