@@ -3,7 +3,7 @@
     // if(isset($_COOKIE["uid"])){
     //     header("Location: ./index.php?error=AlreadyLoggedIn");
     // }
-    if(!isset($_SESSION["uid"])){
+    if(!isset($_SESSION["uidNA"])){
         header("Location: ./index.php?status=NotLogIn");
     }
 ?>
@@ -29,6 +29,9 @@
                                 break;
                             case 'connectionFailed':
                                 echo 'Oops, something went wrong while connecting to the server. Please try again :(';
+                                break;
+                            case 'userCouldNotFound':
+                                echo 'User could not found. Please try again.';
                                 break;
                             default:
                                 echo 'Oops, something went wrong. Please try again :(';

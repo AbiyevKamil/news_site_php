@@ -24,11 +24,30 @@
                             case 'WrongRecoveryCode':
                                 echo 'Recovery code is wrong. Please try again.';
                                 break;
-                            case 'codeCouldNotFound':
+                            case 'codeCouldNotSave':
                                 echo 'Oops, something went wrong.';
+                                break;
+                            case 'mailCouldNotSend':
+                                echo 'Oops, something went wrong. Mail could not send';
                                 break;
                             case 'connectionFailed':
                                 echo 'Oops, something went wrong while connecting to the server. Please try again :(';
+                                break;
+                            default:
+                                echo 'Oops, something went wrong. Please try again :(';
+                                break;
+                        }
+                    ?>
+                    </div>
+
+                <?php } ?>
+
+                <?php if (isset($_GET['success'])) {  ?>
+                    <div class="alert alert-success p-4">
+                    <?php
+                        switch ($_GET['success']) {
+                            case 'recoveryCodeSent':
+                                echo 'Recovery code sent successfully.';
                                 break;
                             default:
                                 echo 'Oops, something went wrong. Please try again :(';
@@ -47,7 +66,7 @@
                     <div class="form-group">
                         <button type="submit" class="btn-custom" name="submit">Submit</button>
                     </div>
-                    <p class="form-group text-center">Don't get the code? <a href="auth/forgetPasswordController.php" class="btn-link">Resend</a> </p>
+                    <p class="form-group text-center">Don't get the code? <a href="auth/resendRecoveryCode.php" class="btn-link">Resend</a> </p>
                 </form>
             </div> 
         </div>
