@@ -36,12 +36,11 @@ session_start();
         include "/AppServ/www/sdf/news_site_php/config/db.php"; 
 
         $forApprove = mysqli_query($connection, $queryForApprove);
-        header("Location: ../index.php?status=Approved");         
+        header("Location: ../index.php?success=Approved");         
            
     }
     else{
-      header("Location: ../notApproved.php?error=WrongCode");         
-
+      header("Location: ../notApproved.php?status=WrongCode");       
     }
 
   }

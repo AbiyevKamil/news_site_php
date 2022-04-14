@@ -76,9 +76,9 @@ session_start();
     return false;
   }
 
-  function sendApprovalCode(){
+  function resendApprovalCode(){
     $code = strval(rand(100000,999999));
-    $to = $_POST['email'];
+    $to = $_SESSION['email'];
     $subject = "Welcome to NewsApp";
     $body = "
 
@@ -96,17 +96,16 @@ session_start();
     if($mail){
       $save = saveCodeToDB($to, $code);
       if($save){                  
-        header("Location: ../recoveryCode.php");
+        header("Location: ../notApproved.php?success=codeResent");
       }
       else{
-        header("Location: ../forgetPassword.php?status=codeCouldNotSave");
+        header("Location: ../notApproved.php?status=codeCouldNotSave");
         echo "not saved";
       }
     }
     else{
       header("Location: ../notApproved.php?status=mailCouldNotSend");
-      echo "not send";
     }
   }
-  
+  resendApprovalCode();
 ?>

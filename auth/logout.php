@@ -5,5 +5,5 @@
 
     session_destroy();
     
-    header("Location: ../index.php?status=LoggedOut");
+    header("Location: ../login.php?success=LoggedOut");
 ?>

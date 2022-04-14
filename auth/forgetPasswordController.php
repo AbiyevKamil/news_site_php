@@ -56,7 +56,8 @@ session_start();
       $user_id = $row["id"];
     }
     else{
-      echo "No row";
+      header("Location: ../forgetPassword.php?status=userNotFound");
+      exit();
     }
 
     $queryForDeleting = "DELETE FROM `recovery` WHERE user_id = '$user_id';";
@@ -64,7 +65,9 @@ session_start();
     if($connection){
       $delete = mysqli_query($connection, $queryForDeleting);
     }
-    
+    else{
+      header("Location: ../forgetPassword.php?status=connectionFailed");
+    }
     $queryForSaving = "INSERT INTO `recovery` (`user_id`, `code`, `expire_date`) VALUES ('$user_id', '$code', DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 3 MINUTE));";
 
     if($connection){
@@ -81,7 +84,11 @@ session_start();
 
   function sendRecoveryCode(){
     $code = strval(rand(100000,999999));
-    $to = $_POST['email'];
+    if(empty($_SESSION['emailForReset']) && !isset($_SESSION['emailForReset'])){
+      $_SESSION['emailForReset'] = $_POST['email'];
+    }
+    $to = $_SESSION['emailForReset'];
+
     $subject = "Password reset request";
     $body = "<h1>Reset your password?</h1> <br>
             <p>If you requested a password reset, use the confirmation code below to complete the process. 
@@ -99,12 +106,12 @@ session_start();
         header("Location: ../recoveryCode.php");
       }
       else{
-        header("Location: ../forgetPassword.php?error=codeCouldNotSave");
+        header("Location: ../forgetPassword.php?status=codeCouldNotSave");
         echo "not saved";
       }
     }
     else{
-      header("Location: ../forgetPassword.php?error=mailCouldNotSend");
+      header("Location: ../forgetPassword.php?status=mailCouldNotSend");
       echo "not send";
     }
   }
