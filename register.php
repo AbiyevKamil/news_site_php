@@ -1,5 +1,11 @@
 <?php include "./components/header.php"; ?>
 
+<?php
+if ($_SESSION['uid']) {
+    header("Location: ./index.php?status=AlreadyLoggedIn");
+}
+?>
+
 <!--register-->
 <section class="section pt-55 mb-50">
     <div class="container-fluid">

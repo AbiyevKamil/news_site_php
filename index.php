@@ -45,6 +45,9 @@
           case 'UserNotFound':
             echo 'User not found. The user you try to find is deleted or has never been existed.';
             break;
+          case 'AlreadyLoggedIn':
+            echo 'You are already logged in.';
+            break;
           default:
             echo 'Oops, something went wrong. Try again :(';
             break;
