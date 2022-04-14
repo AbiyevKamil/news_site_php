@@ -3,7 +3,7 @@
 $DB = array(
   "hostname" => "localhost",
   "username" => "root",
-  "password" => "kamil2002",
+  "password" => "nocode0911",
   "database" => "news",
 );
 
