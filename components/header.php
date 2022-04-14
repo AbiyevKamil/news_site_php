@@ -60,9 +60,11 @@ session_start();
           <li class="nav-item">
             <a class="nav-link" href="contact.php"> Contact </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="addNews.php">Add News</a>
-          </li>
+          <?php if (isset($_SESSION["uid"])) { ?>
+            <li class="nav-item">
+              <a class="nav-link" href="addNews.php">Add News</a>
+            </li>
+          <?php } ?>
         </ul>
       </div>
       <!--/-->

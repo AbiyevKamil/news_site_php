@@ -1,22 +1,39 @@
 <?= include "./components/header.php" ?>
 <?= include "./queries/data/get_categories.php" ?>
 <?php
-if (!$_GET['newsId']) {
-  header("Location: index.php");
-}
-// Start fetch area
-// Change id later
-$user_id = "60423032-ad08-11ec-ba09-002b67e478b5";
-$sqlToGetNews = "select * from news where is_deleted = 0 and is_approved = 1 and user_id = '$user_id';";
-$queryToGetNews = runQuery($sqlToGetNews);
-if ($queryToGetNews) {
-  $news = mysqli_fetch_assoc($queryToGetNews);
+if (!isset($_SESSION["uid"])) {
+  header("Location: index.php?status=Unauthorized");
 } else {
-  header("Location: index.php?status=SomethingWentWrongWhileUpdateNews");
-}
-// End fetch area
-$categories = getCategories();
+  if (!$_GET['newsId']) {
+    header("Location: index.php");
+  } else {
+    // Start fetch area
+    $user_id = $_SESSION["uid"];
+    $id = $_GET['newsId'];
+    $sqlToAuthorize = "select id from news where user_id = '$user_id' and id = '$id'";
+    $queryToAuthorize = runQuery($sqlToAuthorize);
+    if ($queryToAuthorize) {
+      $rowCount = mysqli_num_rows($queryToAuthorize);
+      if ($rowCount == 0)
+        header("Location: index.php?status=Unauthorized");
+    } else {
+      header("Location: index.php?status=NewsEditNotWorking");
+    }
 
+    $sqlToGetNews = "select * from news where is_deleted = 0 and user_id = '$user_id' and id = '$id';";
+    $queryToGetNews = runQuery($sqlToGetNews);
+    if ($queryToGetNews) {
+      $news = mysqli_fetch_assoc($queryToGetNews);
+      if (!$news) {
+        header("Location: index.php?status=Unauthorized");
+      }
+    } else {
+      header("Location: index.php?status=SomethingWentWrongWhileUpdateNews");
+    }
+    // End fetch area
+    $categories = getCategories();
+  }
+}
 ?>
 <section class="section pt-55 mb-50">
   <h5 class="text-center" style="margin-bottom: 65px;">Latest banner</h5>

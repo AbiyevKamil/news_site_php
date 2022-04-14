@@ -2,6 +2,9 @@
 <?= include "./queries/data/get_news.php" ?>
 
 <?php
+
+use phpDocumentor\Reflection\Types\Boolean;
+
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
   $newsId = $_GET["newsId"];
   if ($newsId) {
@@ -28,68 +31,105 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
             <img src="public/uploads/news/<?= $news["banner"] ?>" alt="" />
           </div>
           <div class="post-single-content" style="position: relative">
-            <!-- <a href="blog-grid.html" class="categorie">travel</a> -->
-            <div class="d-flex align-items-center justify-content-center">
+             <!-- Category search add later -->
+            <a class="categorie">
+              <?= $news["category_name"] ?>
+            </a>
+            <div class="d-flex align-items-center justify-content-between">
               <h4 class="flex-1">
                 <?= $news["title"] ?>
               </h4>
               <!-- Check for authorization -->
-              <div class="ml-md-3" style="align-self: flex-start;">
-                <div class="dropdown">
-                  <button style=" padding:10px;outline:none;border:none;background-color: transparent;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-                    <i style="font-size: 16px;" class="fa-solid fa-ellipsis-vertical"></i>
-                  </button>
-                  <div class="dropdown-menu custom-ddm" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="editNews.php?newsId=<?= $news['id'] ?>">Edit</a>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary dropdown-item" data-toggle="modal" data-target="#exampleModal">
-                      Delete
-                    </button>
+              <?php
+              if ($_SESSION["uid"]) {
+                if ($_SESSION["uid"] == $user['id']) {
+              ?>
+                  <div class="ml-md-3" style="align-self: flex-start;">
+                    <div class="dropdown">
+                      <button style=" padding:10px;outline:none;border:none;background-color: transparent;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                        <i style="font-size: 16px;" class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                      <div class="dropdown-menu custom-ddm" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="editNews.php?newsId=<?= $news['id'] ?>">Edit</a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary dropdown-item" data-toggle="modal" data-target="#exampleModal">
+                          Delete
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+              <?php
+                }
+              }
+              ?>
             </div>
             <!-- Check for authorization -->
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Do you want to delete this news?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <?= $news["title"] ?>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <form action="delete_news.php" method="POST">
-                      <input type="hidden" value="<?= $news["id"] ?>" name="newsId">
-                      <button type="submit" class="btn btn-danger">Yes</button>
-                    </form>
+            <?php
+            if ($_SESSION["uid"]) {
+              if ($_SESSION["uid"] == $user['id']) {
+            ?>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Do you want to delete this news?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <?= $news["title"] ?>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <form action="delete_news.php" method="POST">
+                          <input type="hidden" value="<?= $news["id"] ?>" name="newsId">
+                          <button type="submit" class="btn btn-danger">Yes</button>
+                        </form>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+            <?php
+              }
+            }
+            ?>
             <div class="post-single-info">
               <ul class="list-inline">
-                <!-- Check for authorization -->
-                <!-- <li>
-                  <a href="profile.php"><img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" /></a>
-                </li>-->
-                <li>
-                  <a href="user.php?userId=<?= $user["id"] ?>">
-                    <img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" />
-                  </a>
-                </li>
-                <!-- <li>
-                  <a href="profile.php"><?= $user["user_name"] ?></a>
-                </li> -->
-                <li>
-                  <a href="user.php?userId=<?= $user["id"] ?>"><?= $user["user_name"] ?></a>
-                </li>
+                <?php
+                if ($_SESSION['uid']) {
+                  if ($_SESSION['uid'] == $user['id']) {
+                ?>
+                    <li>
+                      <a href="profile.php"><img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" /></a>
+                    </li>
+                    <li>
+                      <a href="profile.php"><?= $user["user_name"] ?></a>
+                    </li>
+                  <?php } else { ?>
+                    <li>
+                      <a href="user.php?userId=<?= $user["id"] ?>">
+                        <img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="user.php?userId=<?= $user["id"] ?>"><?= $user["user_name"] ?></a>
+                    </li>
+                  <?php
+                  }
+                } else { ?>
+                  <li>
+                    <a href="user.php?userId=<?= $user["id"] ?>">
+                      <img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="user.php?userId=<?= $user["id"] ?>"><?= $user["user_name"] ?></a>
+                  </li>
+                <?php } ?>
+
+
                 <li class="dot"></li>
                 <li><?= $news["created_at"] ?></li>
                 <li class="dot"></li>
@@ -157,12 +197,26 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
         <!--widget-author-->
         <div class="widget">
           <div class="widget-author">
-            <!-- <a href="profile.php" class="image">
-              <img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" />
-            </a> -->
-            <a href="user.php?userId=<?= $user["id"] ?>" class="image">
-              <img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" />
-            </a>
+            <?php
+            if ($_SESSION['uid']) {
+              if ($_SESSION['uid'] == $user['id']) {
+            ?>
+                <a href="profile.php" class="image">
+                  <img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" />
+                </a>
+              <?php } else { ?>
+                <a href="user.php?userId=<?= $user["id"] ?>" class="image">
+                  <img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" />
+                </a>
+              <?php
+              }
+            } else { ?>
+              <a href="user.php?userId=<?= $user["id"] ?>" class="image">
+                <img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" />
+              </a>
+            <?php } ?>
+
+
             <h6>
               <span>Hi, I'm <?= $user["full_name"] ?></span>
             </h6>

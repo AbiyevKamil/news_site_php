@@ -13,6 +13,15 @@
           case 'SuccessfullyDeletedNews':
             echo 'News successfully deleted';
             break;
+          case 'Approved':
+            echo 'Successfully confirmed your account';
+            break;
+          case 'SuccessfullyLoggedin':
+            echo 'Welcome back. Check for news :)';
+            break;
+          default:
+            echo 'Succeeded';
+            break;
         }
         ?>
       </div>
@@ -29,6 +38,9 @@
             break;
           case 'NotValidIdForNews':
             echo 'News does not exist.';
+            break;
+          case 'Unauthorized':
+            echo 'You are not allowed for this action.';
             break;
           default:
             echo 'Oops, something went wrong. Try again :(';
@@ -53,6 +65,9 @@
                 </a>
               </div>
               <div class="post-card-content">
+                <a class="categorie">
+                  <?= $element["category_name"] ?>
+                </a>
                 <h5>
                   <a href="news.php?newsId=<?= $element["id"] ?>"><?= $element["title"] ?></a>
                 </h5>
@@ -66,14 +81,40 @@
                 </p>
                 <div class="post-card-info">
                   <ul class="list-inline">
-                    <li>
-                      <a href="profile.php">
-                        <img src="public/uploads/users/<?= $element["profile_picture"] ?>" alt="" />
-                      </a>
-                    </li>
-                    <li>
-                      <a href="profile.php"><?= $element["username"] ?></a>
-                    </li>
+                    <?php
+                    if ($_SESSION['uid']) {
+                      if ($_SESSION['uid'] == $element['user_id']) {
+                    ?>
+                        <li>
+                          <a href="profile.php">
+                            <img src="public/uploads/users/<?= $element["profile_picture"] ?>" alt="" />
+                          </a>
+                        </li>
+                        <li>
+                          <a href="profile.php"><?= $element["username"] ?></a>
+                        </li>
+                      <?php } else { ?>
+                        <li>
+                          <a href="user.php?userId=<?= $element["user_id"] ?>">
+                            <img src="public/uploads/users/<?= $element["profile_picture"] ?>" alt="" />
+                          </a>
+                        </li>
+                        <li>
+                          <a href="user.php?userId=<?= $element["user_id"] ?>"><?= $element["username"] ?></a>
+                        </li>
+                      <?php
+                      }
+                    } else { ?>
+                      <li>
+                        <a href="user.php?userId=<?= $element["user_id"] ?>">
+                          <img src="public/uploads/users/<?= $element["profile_picture"] ?>" alt="" />
+                        </a>
+                      </li>
+                      <li>
+                        <a href="user.php?userId=<?= $element["user_id"] ?>"><?= $element["username"] ?></a>
+                      </li>
+                    <?php } ?>
+
                     <li class="dot"></li>
                     <li><?= $element["created_at"] ?></li>
                   </ul>

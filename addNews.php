@@ -1,7 +1,11 @@
 <?= include "./components/header.php" ?>
 <?= include "./queries/data/get_categories.php" ?>
 <?php
-$categories = getCategories();
+if (!$_SESSION["uid"]) {
+  header("Location: index.php?status=Unauthorized");
+} else {
+  $categories = getCategories();
+}
 ?>
 <section class="section pt-55 mb-50">
   <div class="container-fluid">
@@ -17,7 +21,7 @@ $categories = getCategories();
               echo 'Fill all the fields.';
               break;
             case 'InvalidLengthTitle':
-              echo 'Title must be longer than 2 and no longer than 100 characters.';
+              echo 'Title must be longer than 2 and no longer than 150 characters.';
               break;
             case 'ShortContent':
               echo 'Content must be longer than 100 characters.';
@@ -56,7 +60,7 @@ $categories = getCategories();
         <div class="form-group select-list">
           <label for="category">Category</label>
           <select class="form-control" name="category" id="category">
-            <option selected value="null">Select category</option>
+            <option selected value="">Select category</option>
             <?php foreach ($categories as $category) { ?>
               <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
             <?php } ?>
