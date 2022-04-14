@@ -7,8 +7,39 @@
             <div class="section-title">
                 <h5>Sign up</h5>
             </div>
-
-            <form action="auth/doRegister.php" class="sign-form widget-form contact_form " method="POST">
+            <?php if (isset($_GET['status'])) {  ?>
+                <div class="alert alert-danger p-4">
+                    <?php
+                    switch ($_GET['status']) {
+                        case 'registerFailed':
+                            echo 'Something went wrong while registering.';
+                            break;
+                        case 'emptyInput':
+                            echo 'Fill all the fields.';
+                            break;
+                        case 'invalidUsername':
+                            echo 'Invalid username. Please try again.';
+                            break;
+                        case 'invalidEmail':
+                            echo 'Invalid email. Please try again.';
+                            break;
+                        case 'passwordsDoNotMatch':
+                            echo 'Passwords do not match. Please try again.';
+                            break;
+                        case 'UserAlreadyExists':
+                            echo 'This user already exists or this username/email is taken. Please try again.';
+                            break;
+                        case 'connectionFailed':
+                            echo 'Oops, something went wrong while connecting to the server. Please try again :(';
+                            break;
+                        default:
+                            echo 'Oops, something went wrong. Please try again :(';
+                            break;
+                    }
+                    ?>
+                </div>
+            <?php } ?>
+            <form autocomplete="off" action="auth/doRegister.php" class="sign-form widget-form contact_form " method="POST">
                 <div class="form-group">
 
                     <input type="text" class="form-control" placeholder="Username*" name="username" value="">
@@ -32,12 +63,6 @@
                 <div class="form-group">
 
                     <input type="password" class="form-control" placeholder="Confirm password*" name="re_password" value="">
-                </div>
-                <div class="sign-controls form-group">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="rememberMe">
-                        <label class="custom-control-label" for="rememberMe">Agree to our <a href="#" class="btn-link">terms & conditions</a> </label>
-                    </div>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn-custom" name="submit">Sign Up</button>
