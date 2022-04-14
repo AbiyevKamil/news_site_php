@@ -4,7 +4,7 @@
     // }
     session_start();
     if(isset($_SESSION["uid"])){
-        header("Location: ./index.php?error=AlreadyLoggedIn");
+        header("Location: ./index.php?status=AlreadyLoggedIn");
     }
 ?>
 <?php include "./components/header.php"; ?>
@@ -15,6 +15,32 @@
                 <div class="section-title">
                     <h5>Reset Password</h5>                    
                 </div>
+
+                <?php if (isset($_GET['status'])) {  ?>
+                    <div class="alert alert-danger p-4">
+                    <?php
+                        switch ($_GET['status']) {
+                            case 'userNotFound':
+                                echo 'User could not found. Please make sure that email in valid.';
+                                break;
+                            case 'codeCouldNotSave':
+                                echo 'Oops, something went wrong while sending recovery mail #1.';
+                                break;
+                            case 'mailCouldNotSend':
+                                echo 'Oops, something went wrong while sending recovery mail #2.';
+                                break;
+                            case 'connectionFailed':
+                                echo 'Oops, something went wrong while connecting to the server. Please try again :(';
+                                break;
+                            default:
+                                echo 'Oops, something went wrong. Please try again :(';
+                                break;
+                        }
+                    ?>
+                    </div>
+
+                <?php } ?>
+
                 <form  action="auth/forgetPasswordController.php" class="sign-form widget-form " method="POST">
                     
                     <div class="form-group">

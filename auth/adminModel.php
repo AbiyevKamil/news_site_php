@@ -14,7 +14,7 @@ session_start();
                     $checkPass = password_verify($password, $row['password']);
                     
                     if($checkPass == false){                    
-                        header("Location: ../login.php?error=wrongPassword");
+                        header("Location: ../login.php?status=wrongPassword");
                     }
                     else{
                         $queryAdmin = "SELECT * FROM `users` WHERE user_name='$username' AND is_approved = 1 AND is_admin = 1;";
@@ -24,7 +24,7 @@ session_start();
                         $_SESSION['uid'] = $row['id'];
                         $_SESSION['username'] = $row['user_name'];
                         if($adminFound==0){
-                            header("Location: ../admin.php?error=NotAdmin");
+                            header("Location: ../admin.php?status=NotAdmin");
                         }
                         else{                                               
                             header("Location: ../index.php?status=SuccessfullyLoggedin");                        
@@ -35,12 +35,12 @@ session_start();
             }
             else
             {
-                header("Location: ../index.php?error=userDoesNotExist");
+                header("Location: ../index.php?status=userDoesNotExist");
             }
         }
         else
         {
-            header("Location: ../index.php?error=connectionFailed");
+            header("Location: ../index.php?status=connectionFailed");
         }
     }
 

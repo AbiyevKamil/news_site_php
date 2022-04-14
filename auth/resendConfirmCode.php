@@ -56,8 +56,8 @@ session_start();
       $user_id = $row["id"];
     }
     else{
-      header("Location: ../forgetPassword.php?status=userNotFound");
-      exit();
+        header("Location: ../forgetPassword.php?status=userNotFound");
+        exit();
     }
 
     $queryForDeleting = "DELETE FROM `approval` WHERE user_id = '$user_id';";
@@ -80,7 +80,7 @@ session_start();
     return false;
   }
 
-  function sendApprovalCode(){
+  function resendApprovalCode(){
     $code = strval(rand(100000,999999));
     $to = $_SESSION['email'];
     $subject = "Welcome to NewsApp";
@@ -101,17 +101,17 @@ session_start();
     if($mail){
       $save = saveCodeToDB($to, $code);
       if($save){                  
-        header("Location: ../recoveryCode.php");
+        header("Location: ../notApproved.php?status=codeResent");
       }
       else{
-        header("Location: ../forgetPassword.php?status=codeCouldNotSave");
+        header("Location: ../notApproved.php?status=codeCouldNotSave");
         echo "not saved";
       }
     }
     else{
       header("Location: ../notApproved.php?status=mailCouldNotSend");
-      echo "not send";
+    //   echo "not send";
     }
   }
-  
+  resendApprovalCode();
 ?>

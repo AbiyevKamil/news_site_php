@@ -8,6 +8,39 @@
                     <h5>Sign up</h5>
                 </div>
                 
+                <?php if (isset($_GET['status'])) {  ?>
+                    <div class="alert alert-danger p-4">
+                    <?php
+                        switch ($_GET['status']) {
+                            case 'registerFailed':
+                                echo 'Something went wrong while registering.';
+                                break;
+                            case 'emptyInput':
+                                echo 'Fill all the fields.';
+                                break;
+                            case 'invalidUsername':
+                                echo 'Invalid username. Please try again.';
+                                break;
+                            case 'invalidEmail':
+                                echo 'Invalid email. Please try again.';
+                                break;
+                            case 'passwordsDoNotMatch':
+                                echo 'Passwords do not match. Please try again.';
+                                break;
+                            case 'UserAlreadyExists':
+                                echo 'This user already exists or this username/email is taken. Please try again.';
+                                break;
+                            case 'connectionFailed':
+                                echo 'Oops, something went wrong while connecting to the server. Please try again :(';
+                                break;
+                            default:
+                                echo 'Oops, something went wrong. Please try again :(';
+                                break;
+                        }
+                    ?>
+                    </div>
+                <?php } ?>
+
                 <form action="auth/doRegister.php" class="sign-form widget-form contact_form " method="POST">
                     <div class="form-group">
                     

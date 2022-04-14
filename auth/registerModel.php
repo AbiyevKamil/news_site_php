@@ -15,17 +15,20 @@
             {  
                 // $user_id = $_POST['email'];
                 $_SESSION['email'] = $email;
+
                 include "/AppServ/www/sdf/news_site_php/auth/sendConfirmCode.php";
+                sendApprovalCode();
+                
                 header("Location: ../login.php?status=SuccessfullyRegistered");
             }
             else
             {
-                header("Location: ../index.php?error=ragisterFailed");
+                header("Location: ../register.php?status=ragisterFailed");
             }
         }
         else
         {
-            header("Location: ../index.php?error=connectionFailed");
+            header("Location: ../register.php?status=connectionFailed");
         }
     }
 

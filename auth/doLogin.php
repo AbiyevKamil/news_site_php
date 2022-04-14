@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"){
 
     }
     else{
-        header("Location: ../index.php?error=loginFailed");
+        header("Location: ../login.php?status=loginFailed");
     }
 }
 

@@ -40,7 +40,7 @@ session_start();
            
     }
     else{
-      header("Location: ../notApproved.php?error=WrongCode");         
+      header("Location: ../notApproved.php?status=WrongCode");         
 
     }
 

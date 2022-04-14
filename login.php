@@ -4,7 +4,7 @@
     // }
     session_start();
     if(isset($_SESSION["uid"])){
-        header("Location: ./index.php?error=AlreadyLoggedIn");
+        header("Location: ./index.php?status=AlreadyLoggedIn");
     }
 ?>
 <?php include "./components/header.php"; ?>
@@ -17,12 +17,43 @@
                 <div class="section-title">
                     <h5>Login</h5>
                 </div>
+
+                <?php if (isset($_GET['status'])) {  ?>
+                    <div class="alert alert-danger p-4">
+                    <?php
+                        switch ($_GET['status']) {
+                            case 'loginFailed':
+                                echo 'Something went wrong while registering.';
+                                break;
+                            case 'emptyInput':
+                                echo 'Fill all the fields.';
+                                break;
+                            case 'wrongPassword':
+                                echo 'Invalid password. Please try again.';
+                                break;
+                            case 'userDoesNotExist':
+                                echo 'Invalid username or email. Please try again.';
+                                break;
+                            case 'connectionFailed':
+                                echo 'Oops, something went wrong while connecting to the server. Please try again :(';
+                                break;
+                            default:
+                                echo 'Oops, something went wrong. Please try again :(';
+                                break;
+                        }
+                    ?>
+                    </div>
+
+                    <!-- SuccessfullyRegistered -->
+                    <!-- passwordResetedSuccessfully -->
+
+                <?php } ?>
                 <form  action="auth/doLogin.php" class="sign-form widget-form " method="POST">
                         <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Username*" name="username" value="">
+                        <input type="text" class="form-control" placeholder="Username*" name="username" value="<?= $_COOKIE['username'] ?>">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password*" name="password" value="">
+                        <input type="password" class="form-control" placeholder="Password*" name="password" value="<?= $_COOKIE['password'] ?>">
                     </div>
                     <div class="sign-controls form-group">
                         <div class="custom-control custom-checkbox">

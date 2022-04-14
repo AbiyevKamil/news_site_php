@@ -19,16 +19,19 @@ session_start();
         $queryForReset = "UPDATE `users` SET `password`='$hashed_newPassword' WHERE `id`='$user_id'";
         include "/AppServ/www/sdf/news_site_php/config/db.php"; 
         if(!$connection){
-          header("Location: ../resetPassword.php");
+          header("Location: ../resetPassword.php?status=connectionFailed");
         }
         $forReseting = mysqli_query($connection, $queryForReset);
         if($forReseting){
-          header("Location: ../login.php");
+          header("Location: ../login.php?status=passwordResetedSuccessfully");
         }
         else{
-          header("Location: ../resetPassword.php?error=ResettingFailed");
+          header("Location: ../resetPassword.php?status=resettingFailed");
 
         }
+      }
+      else{
+        header("Location: ../resetPassword.php?status=passwordsDoNotMatch");
       }
   }
   resetPassword();

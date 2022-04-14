@@ -13,7 +13,7 @@ class AdminLoginController{
 
     public function loginAdmin(){
         if($this->emptyInput() == false){
-            header("Location: ../index.php?error=emptyInput");
+            header("Location: ../index.php?status=emptyInput");
             exit();
         }
         

@@ -19,27 +19,27 @@ class RegisterController{
 
     public function registerUser(){
         if($this->emptyInput() == false){
-            header("Location: ../index.php?error=emptyInput");
+            header("Location: ../register.php?status=emptyInput");
             exit();
         }
 
         if($this->invalidUsername() == false){
-            header("Location: ../index.php?error=invalidUsername");
+            header("Location: ../register.php?status=invalidUsername");
             exit();
         }
 
         if($this->invalidEmail() == false){
-            header("Location: ../index.php?error=invalidEmail");
+            header("Location: ../register.php?status=invalidEmail");
             exit();
         }
 
         if($this->passwordMatch() == false){
-            header("Location: ../index.php?error=passwordMatch");
+            header("Location: ../register.php?status=passwordsDoNotMatch");
             exit();
         }
 
         if($this->checkUserExist($this->email, $this->username) == false){
-            header("Location: ../index.php?error=checkUserExist");
+            header("Location: ../register.php?status=UserAlreadyExists");
             exit();
         }
         
@@ -97,7 +97,7 @@ class RegisterController{
         }
         else
         {
-            header("Location: ../index.php?error=connectionFailed");
+            header("Location: ../register.php?status=connectionFailed");
         }
         return $result;
     }
