@@ -19,7 +19,7 @@
                 include "/AppServ/www/sdf/news_site_php/auth/sendConfirmCode.php";
                 sendApprovalCode();
                 
-                header("Location: ../login.php?status=SuccessfullyRegistered");
+                header("Location: ../login.php?success=SuccessfullyRegistered");
             }
             else
             {

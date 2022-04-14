@@ -23,15 +23,16 @@ session_start();
                     $_SESSION['uid'] = $row['id'];
                     $_SESSION['username'] = $row['user_name'];
                     $_SESSION['email'] = $row['email'];
-                    if(!empty($_POST['rememberMe'])){
-                        setcookie('username', $row['user_name'], time()+86400*30);
-                        setcookie('password', $row['password'], time()+86400*30);
-                    }
+                    // if(!empty($_POST['rememberMe'])){
+                    //     setcookie('usernameCoo', $row['user_name'], time()+86400*3);
+                    //     setcookie('uidCoo', $row['id'], time()+86400*3);
+                    //     setcookie('passwordCoo', $row['password'], time()+86400*3);
+                    // }
                     if($userFound==0){
                         header("Location: ../notApproved.php");
                     }
                     else{                                               
-                        header("Location: ../index.php?status=SuccessfullyLoggedin");                        
+                        header("Location: ../index.php?success=SuccessfullyLoggedin");                        
                     } 
                     
                 }                                       

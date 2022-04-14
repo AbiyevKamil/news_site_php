@@ -44,16 +44,35 @@
                     ?>
                     </div>
 
-                    <!-- SuccessfullyRegistered -->
-                    <!-- passwordResetedSuccessfully -->
+                <?php } ?>
+
+                <?php if (isset($_GET['success'])) {  ?>
+                    <div class="alert alert-success p-4">
+                    <?php
+                        switch ($_GET['success']) {
+                            case 'SuccessfullyRegistered':
+                                echo 'Successfully registered.';
+                                break;
+                            case 'LoggedOut':
+                                echo 'Successfully logged out.';
+                                break;
+                            case 'passwordResetedSuccessfully':
+                                echo 'Password reset successfully.';
+                                break;
+                            default:
+                                echo 'Oops, something went wrong. Please try again :(';
+                                break;
+                        }
+                    ?>
+                    </div>
 
                 <?php } ?>
                 <form  action="auth/doLogin.php" class="sign-form widget-form " method="POST">
                         <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Username*" name="username" value="<?= $_COOKIE['username'] ?>">
+                        <input type="text" class="form-control" placeholder="Username*" name="username" value="">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password*" name="password" value="<?= $_COOKIE['password'] ?>">
+                        <input type="password" class="form-control" placeholder="Password*" name="password" value="">
                     </div>
                     <div class="sign-controls form-group">
                         <div class="custom-control custom-checkbox">

@@ -55,10 +55,6 @@ session_start();
 
       $user_id = $row["id"];
     }
-    else{
-        header("Location: ../forgetPassword.php?status=userNotFound");
-        exit();
-    }
 
     $queryForDeleting = "DELETE FROM `approval` WHERE user_id = '$user_id';";
 
@@ -94,14 +90,13 @@ session_start();
     
     Please enter this code below to confirm you email address: <p> <br><b><h2>" . $code . "</h2></b>";
     $altBody = "AltBody";
-    // $date = date("Y/m/d H:i:s");
 
     $mail = sendMail($to, $subject, $body, $altBody);
 
     if($mail){
       $save = saveCodeToDB($to, $code);
       if($save){                  
-        header("Location: ../notApproved.php?status=codeResent");
+        header("Location: ../notApproved.php?success=codeResent");
       }
       else{
         header("Location: ../notApproved.php?status=codeCouldNotSave");
@@ -110,7 +105,6 @@ session_start();
     }
     else{
       header("Location: ../notApproved.php?status=mailCouldNotSend");
-    //   echo "not send";
     }
   }
   resendApprovalCode();

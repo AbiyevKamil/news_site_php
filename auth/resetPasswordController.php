@@ -23,7 +23,7 @@ session_start();
         }
         $forReseting = mysqli_query($connection, $queryForReset);
         if($forReseting){
-          header("Location: ../login.php?status=passwordResetedSuccessfully");
+          header("Location: ../login.php?success=passwordResetedSuccessfully");
         }
         else{
           header("Location: ../resetPassword.php?status=resettingFailed");

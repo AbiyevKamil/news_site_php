@@ -22,10 +22,7 @@
                         switch ($_GET['status']) {
                             case 'userNotFound':
                                 echo 'User could not found. Please try again.';
-                                break;
-                            case 'codeResent':
-                                echo 'Confirmation code resent.';
-                                break;
+                                break;                            
                             case 'codeCouldNotSave':
                                 echo 'Oops, something went wrong while sending recovery mail #1.';
                                 break;
@@ -41,6 +38,25 @@
                         }
                     ?>
                     </div>
+
+                <?php } ?>
+
+                <?php if (isset($_GET['success'])) {  ?>
+                    <div class="alert alert-success p-4">
+                    <?php
+                        switch ($_GET['success']) {
+                            case 'codeResent':
+                                echo 'Confirmation code resent.';
+                                break;
+                            default:
+                                echo 'Oops, something went wrong. Please try again :(';
+                                break;
+                        }
+                    ?>
+                    </div>
+
+                    <!-- SuccessfullyRegistered -->
+                    <!-- passwordResetedSuccessfully -->
 
                 <?php } ?>
 

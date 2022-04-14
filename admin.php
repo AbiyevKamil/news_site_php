@@ -19,12 +19,14 @@
                 </div>
 
                 <?php if (isset($_GET['status'])) {  ?>
-                    
                     <div class="alert alert-danger p-4">
                     <?php
                         switch ($_GET['status']) {
                             case 'loginFailed':
                                 echo 'Something went wrong while registering.';
+                                break;
+                            case 'NotAdmin':
+                                echo 'This user is not admin.';
                                 break;
                             case 'emptyInput':
                                 echo 'Fill all the fields.';
@@ -37,6 +39,22 @@
                                 break;
                             case 'connectionFailed':
                                 echo 'Oops, something went wrong while connecting to the server. Please try again :(';
+                                break;
+                            default:
+                                echo 'Oops, something went wrong. Please try again :(';
+                                break;
+                        }
+                    ?>
+                    </div>
+
+                <?php } ?>
+
+                <?php if (isset($_GET['success'])) {  ?>
+                    <div class="alert alert-success p-4">
+                    <?php
+                        switch ($_GET['success']) {
+                            case 'passwordResetedSuccessfully':
+                                echo 'Password reset successfully.';
                                 break;
                             default:
                                 echo 'Oops, something went wrong. Please try again :(';
