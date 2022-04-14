@@ -1,7 +1,7 @@
 <?= include "./components/header.php" ?>
 <?= include "./queries/data/get_categories.php" ?>
 <?php
-if (!isset($_GET['newsId'])) {
+if (!$_GET['newsId']) {
   header("Location: index.php");
 }
 // Start fetch area
@@ -28,8 +28,8 @@ $categories = getCategories();
       <div class="section-title">
         <h5>Edit News</h5>
       </div>
-      <form action="add_news.php" method="post" enctype="multipart/form-data" class="sign-form widget-form contact_form " method="post">
-        <input type="hidden" value="" name="newsId">
+      <form action="edit_news.php" method="post" enctype="multipart/form-data" class="sign-form widget-form contact_form " method="post">
+        <input type="hidden" value="<?= $news['id'] ?>" name="newsId">
         <div class="form-group">
           <label class="label" for="title">Title</label>
           <input type="text" class="form-control" id="title" name="title" value="<?= $news['title'] ?>">

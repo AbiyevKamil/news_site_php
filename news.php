@@ -4,14 +4,15 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
   $newsId = $_GET["newsId"];
-  if (isset($newsId)) {
+  if ($newsId) {
     $data = getNewsById($newsId);
-    if (isset($data)) {
+    if ($data) {
       $user = $data["user"];
       $news = $data["news"];
       $comments = $data["comments"];
       $latestNews = $data["latestNews"];
-    }
+    } else
+      header("Location: index.php");
   } else
     header("Location: index.php");
 }
@@ -33,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
                 <?= $news["title"] ?>
               </h4>
               <!-- Check for authorization -->
-              <div style="align-self: flex-start;">
+              <div class="ml-md-3" style="align-self: flex-start;">
                 <div class="dropdown">
                   <button style=" padding:10px;outline:none;border:none;background-color: transparent;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
                     <i style="font-size: 16px;" class="fa-solid fa-ellipsis-vertical"></i>

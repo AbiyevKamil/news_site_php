@@ -7,8 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $content = $_POST['content'];
   $category = $_POST['category'];
   $banner = $_FILES["banner"]["name"];
-  if (isset($title) && isset($content) && isset($category) && isset($banner)) {
-    if (strlen($title) > 2 && strlen($title) <= 2) {
+  if ($title && $content && $category && $banner) {
+    if (strlen($title) > 2 && strlen($title) <= 150) {
       if (strlen($content) > 100) {
         $target_dir = "public/uploads/news/";
         $file_path =  uniqid() . basename($_FILES["banner"]["name"]);
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: addNews.php?status=NotPosted");
           }
         } else {
-          header("Location: addNews.php?status=$target_file?n=" . $_FILES["banner"]["tmp_name"]);
+          header("Location: addNews.php?status=NotUploaded");
         }
       } else {
         header("Location: addNews.php?status=ShortContent");

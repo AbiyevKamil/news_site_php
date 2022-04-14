@@ -843,6 +843,7 @@ input:checked + .slider:before {
 		 Section
 ------------------------------ */
 .section {
+  min-height: 78vh;
   margin-top: 65px;
   background-color: #f9f9ff;
 }

@@ -41,47 +41,55 @@
       <?php
       $data  = getNews();
       // echo 'Hello' . $data[0]['id'];
-      foreach ($data as $element) {
+      if (count($data) > 0) {
+        foreach ($data as $element) {
       ?>
-        <div class="col-lg-4 col-md-6">
-          <!--Post-1-->
-          <div class="post-card">
-            <div class="post-card-image">
-              <a href="news.php?newsId=<?= $element["id"] ?>">
-                <img src="public/uploads/news/<?= $element["banner"] ?>" alt="">
-              </a>
-            </div>
-            <div class="post-card-content">
-              <h5>
-                <a href="news.php?newsId=<?= $element["id"] ?>"><?= $element["title"] ?></a>
-              </h5>
-              <p>
-                <?php
-                if (strlen($element["content"]) > 50)
-                  echo substr($element["content"], 0, 50) . "...";
-                else
-                  echo $element["content"];
-                ?>
-              </p>
-              <div class="post-card-info">
-                <ul class="list-inline">
-                  <li>
-                    <a href="profile.php">
-                      <img src="public/uploads/users/<?= $element["profile_picture"] ?>" alt="" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="profile.php"><?= $element["username"] ?></a>
-                  </li>
-                  <li class="dot"></li>
-                  <li><?= $element["created_at"] ?></li>
-                </ul>
+          <div class="col-lg-4 col-md-6">
+            <!--Post-1-->
+            <div class="post-card">
+              <div class="post-card-image">
+                <a href="news.php?newsId=<?= $element["id"] ?>">
+                  <img src="public/uploads/news/<?= $element["banner"] ?>" alt="">
+                </a>
+              </div>
+              <div class="post-card-content">
+                <h5>
+                  <a href="news.php?newsId=<?= $element["id"] ?>"><?= $element["title"] ?></a>
+                </h5>
+                <p>
+                  <?php
+                  if (strlen($element["content"]) > 50)
+                    echo substr($element["content"], 0, 50) . "...";
+                  else
+                    echo $element["content"];
+                  ?>
+                </p>
+                <div class="post-card-info">
+                  <ul class="list-inline">
+                    <li>
+                      <a href="profile.php">
+                        <img src="public/uploads/users/<?= $element["profile_picture"] ?>" alt="" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="profile.php"><?= $element["username"] ?></a>
+                    </li>
+                    <li class="dot"></li>
+                    <li><?= $element["created_at"] ?></li>
+                  </ul>
+                </div>
               </div>
             </div>
+            <!--/-->
           </div>
-          <!--/-->
-        </div>
 
+        <?php
+        }
+      } else {
+        ?>
+        <div class="p-5 alert alert-info w-100">
+          There is no news currently available. Check later.
+        </div>
       <?php
       }
       ?>

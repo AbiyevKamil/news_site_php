@@ -1,5 +1,6 @@
 <?php
 
+
 function runQuery($sql)
 {
   require "/AppServ/www/sdf/news_site_php/config/db.php";
