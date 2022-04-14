@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<?= include "./components/header.php" ?>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact</title>
-</head>
+<div class="section d-flex align-items-center justify-content-center">
+  <div class="post-single">
+    <div style="gap: 5px;" class="d-flex align-items-center justify-content-between">
+      <p style="margin: 0 !important;">Email:</p>
+      <a href="mailto:stphoenix2002@gmail.com">stphoenix2002@gmail.com</a>
+    </div>
+    <div style="gap: 5px;" class="mt-5 d-flex align-items-center justify-content-between">
+      <p style="margin: 0 !important;">Address:</p>
+      <p style="margin: 0 !important;">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+    </div>
+  </div>
+</div>
 
-<body>
-  Check out later.
-</body>
 
-</html>
+<?= include "components/footer.php" ?>

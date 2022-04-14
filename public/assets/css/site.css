@@ -21,3 +21,16 @@
     left: -90px !important;
   }
 }
+
+
+.avatar {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+}
+
+.avatar img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+}

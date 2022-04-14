@@ -3,9 +3,9 @@ session_start();
   use PHPMailer\PHPMailer\PHPMailer;
   use PHPMailer\PHPMailer\Exception;
 
-  require '/AppServ/www/sdf/news_site_php/vendor/phpmailer/phpmailer/src/Exception.php';
-  require '/AppServ/www/sdf/news_site_php/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-  require '/AppServ/www/sdf/news_site_php/vendor/phpmailer/phpmailer/src/SMTP.php';
+  require '/AppServ/www/sdf/news_site_php/phpmailer/src/Exception.php';
+  require '/AppServ/www/sdf/news_site_php/phpmailer/src/PHPMailer.php';
+  require '/AppServ/www/sdf/news_site_php/phpmailer/src/SMTP.php';
 
   function sendMail($to, $subject, $body, $altBody){
 
@@ -16,8 +16,8 @@ session_start();
     $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
     $mail->Port = 587;
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'hashimlisahiljr@gmail.com';                 // SMTP username
-    $mail->Password = 'nocode0911';                       // SMTP password
+    $mail->Username = 'stphoenix2002@gmail.com';                 // SMTP username
+    $mail->Password = 'akamil2002';                       // SMTP password
     $mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
 
     $mail->From = 'hashimlisahiljr@gmail.com';

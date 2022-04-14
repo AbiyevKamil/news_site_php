@@ -31,7 +31,7 @@
         <?php
         switch ($_GET['status']) {
           case 'SomethingWentWrongWhileNewsDelete':
-            echo 'Oops, something went wrong. Try again :(';
+            echo 'Oops, something went wrong while deleting news. Try again :(';
             break;
           case 'NotAllowedToDelete':
             echo 'You are not allowed to delete this news.';
@@ -41,6 +41,9 @@
             break;
           case 'Unauthorized':
             echo 'You are not allowed for this action.';
+            break;
+          case 'UserNotFound':
+            echo 'User not found. The user you try to find is deleted or has never been existed.';
             break;
           default:
             echo 'Oops, something went wrong. Try again :(';
