@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
               ?>
                   <div class="ml-md-3" style="align-self: flex-start;">
                     <div class="dropdown">
-                      <button style=" padding:10px;outline:none;border:none;background-color: transparent;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                      <button style="padding:10px;outline:none;border:none;background-color: transparent;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
                         <i style="font-size: 16px;" class="fa-solid fa-ellipsis-vertical"></i>
                       </button>
                       <div class="dropdown-menu custom-ddm" aria-labelledby="dropdownMenuButton">
