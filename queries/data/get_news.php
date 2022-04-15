@@ -47,18 +47,18 @@ function getNewsById($id)
     $query = runQuery($sqlToGetNewsById);
     if ($query) {
       $news = mysqli_fetch_assoc($query);
-      $category = getCategory($news["category_id"]);
-      $news = array(
-        "id" => $news["id"],
-        "title" => $news["title"],
-        "content" => $news["content"],
-        "banner" => $news["banner"],
-        "created_at" => $news["created_at"],
-        "user_id" => $news["user_id"],
-        "category_name" => $category["name"],
-        "category_id" => $category["id"],
-      );
-      if (isset($news)) {
+      if ($news) {
+        $category = getCategory($news["category_id"]);
+        $news = array(
+          "id" => $news["id"],
+          "title" => $news["title"],
+          "content" => $news["content"],
+          "banner" => $news["banner"],
+          "created_at" => $news["created_at"],
+          "user_id" => $news["user_id"],
+          "category_name" => $category["name"],
+          "category_id" => $category["id"],
+        );
         $user = getUser($news["user_id"]);
         $comments = getComments($news["id"]);
         $latestNews = getLatestNews(5);
