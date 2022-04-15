@@ -60,61 +60,63 @@ if (!$_GET['userId']) {
       </p>
     </div>
     <h3 style="margin-bottom: 60px;">News</h3>
-    <?php
-    if (count($data) == 0) {
-    ?>
-      <div class="alert alert-info p-4">
-        There is no posted news from <?= $user['user_name'] ?>.
-      </div>
+    <div class="row">
       <?php
-    } else {
-      foreach ($data as $item) {
+      if (count($data) == 0) {
       ?>
-        <div class="col-lg-4 col-md-6">
-          <!--Post-1-->
-          <div class="post-card">
-            <div class="post-card-image">
-              <a href="news.php?newsId=<?= $item["id"] ?>">
-                <img src="public/uploads/news/<?= $item["banner"] ?>" alt="">
-              </a>
-            </div>
-            <div class="post-card-content">
-              <a class="categorie">
-                <?= $item["category_name"] ?>
-              </a>
-              <h5>
-                <a href="news.php?newsId=<?= $item["id"] ?>"><?= $item["title"] ?></a>
-              </h5>
-              <p>
-                <?php
-                if (strlen($item["content"]) > 50)
-                  echo substr($item["content"], 0, 50) . "...";
-                else
-                  echo $item["content"];
-                ?>
-              </p>
-              <div class="post-card-info">
-                <ul class="list-inline">
-                  <li>
-                    <a href="user.php?userId=<?= $user["id"] ?>">
-                      <img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="user.php?userId=<?= $user["id"] ?>"><?= $user["user_name"] ?></a>
-                  </li>
-                  <li class="dot"></li>
-                  <li><?= $item["created_at"] ?></li>
-                </ul>
+        <div class="alert alert-info p-4">
+          There is no posted news from <?= $user['user_name'] ?>.
+        </div>
+        <?php
+      } else {
+        foreach ($data as $item) {
+        ?>
+          <div class="col-lg-4 col-md-6">
+            <!--Post-1-->
+            <div class="post-card">
+              <div class="post-card-image">
+                <a href="news.php?newsId=<?= $item["id"] ?>">
+                  <img src="public/uploads/news/<?= $item["banner"] ?>" alt="">
+                </a>
+              </div>
+              <div class="post-card-content">
+                <a class="categorie">
+                  <?= $item["category_name"] ?>
+                </a>
+                <h5>
+                  <a href="news.php?newsId=<?= $item["id"] ?>"><?= $item["title"] ?></a>
+                </h5>
+                <p>
+                  <?php
+                  if (strlen($item["content"]) > 50)
+                    echo substr($item["content"], 0, 50) . "...";
+                  else
+                    echo $item["content"];
+                  ?>
+                </p>
+                <div class="post-card-info">
+                  <ul class="list-inline">
+                    <li>
+                      <a href="user.php?userId=<?= $user["id"] ?>">
+                        <img src="public/uploads/users/<?= $user["profile_picture"] ?>" alt="" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="user.php?userId=<?= $user["id"] ?>"><?= $user["user_name"] ?></a>
+                    </li>
+                    <li class="dot"></li>
+                    <li><?= $item["created_at"] ?></li>
+                  </ul>
+                </div>
               </div>
             </div>
+            <!--/-->
           </div>
-          <!--/-->
-        </div>
-    <?php
+      <?php
+        }
       }
-    }
-    ?>
+      ?>
+    </div>
   </div>
 </div>
 
