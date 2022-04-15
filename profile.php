@@ -2,7 +2,9 @@
 
 include "./components/header.php";
 include "/AppServ/www/sdf/news_site_php/auth/getProfileData.php";
-
+if (!isset($_SESSION["uid"])) {
+  header("Location: ./login.php?status=NotLoggedIn");
+}
 ?>
 <div class="pt-55 section">
   <div class="container-fluid">

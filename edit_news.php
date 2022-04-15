@@ -1,5 +1,6 @@
 <?php
 session_start();
+require "/AppServ/www/sdf/news_site_php/config/db.php";
 require '/AppServ/www/sdf/news_site_php/queries/run_query.php';
 if (!$_SESSION["uid"]) {
   header("Location: index.php?status=Unauthorized");
@@ -7,12 +8,12 @@ if (!$_SESSION["uid"]) {
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Sql injection check activate later
     // $newsId = mysqli_real_escape_string($connection, $_POST['newsId']);
-    // $title = mysqli_real_escape_string($connection, $_POST['title']);
-    // $content = mysqli_real_escape_string($connection, $_POST['content']);
+    $title = mysqli_real_escape_string($connection, $_POST['title']);
+    $content = mysqli_real_escape_string($connection, $_POST['content']);
     // $category = mysqli_real_escape_string($connection, $_POST['category']);
     $newsId = $_POST['newsId'];
-    $title = $_POST['title'];
-    $content = $_POST['content'];
+    // $title = $_POST['title'];
+    // $content = $_POST['content'];
     $category = $_POST['category'];
     $banner = $_FILES["banner"]["name"];
     $user_id = $_SESSION["uid"];

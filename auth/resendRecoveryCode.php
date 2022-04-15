@@ -96,21 +96,21 @@ session_start();
             This is your recovery code: 
             <br> <b><h2>" . $code . "</h2></b>";
     $altBody = "AltBody";
-
-    $mail = sendMail($to, $subject, $body, $altBody);
-
-    if($mail){
-      $save = saveCodeToDB($to, $code);
-      if($save){ 
-        header("Location: ../recoveryCode.php?success=recoveryCodeSent");
+    
+    $save = saveCodeToDB($to, $code);
+    if($save){ 
+      $mail = sendMail($to, $subject, $body, $altBody);
+      if($mail){
+        header("Location: ../recoveryCode.php?success=recoveryCodeSent");      
       }
       else{
-        header("Location: ../recoveryCode.php?status=codeCouldNotSave");
-      }
+        header("Location: ../recoveryCode.php?status=mailCouldNotSend");
+      }      
     }
     else{
-      header("Location: ../recoveryCode.php?status=mailCouldNotSend");
+      header("Location: ../recoveryCode.php?status=codeCouldNotSave");
     }
+    
   }
   resendRecoveryCode();
 ?>
