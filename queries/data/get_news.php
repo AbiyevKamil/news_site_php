@@ -47,7 +47,7 @@ function getNewsById($id)
     $query = runQuery($sqlToGetNewsById);
     if ($query) {
       $news = mysqli_fetch_assoc($query);
-      $category = getCategory($news["id"]);
+      $category = getCategory($news["category_id"]);
       $news = array(
         "id" => $news["id"],
         "title" => $news["title"],

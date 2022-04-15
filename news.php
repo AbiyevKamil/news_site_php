@@ -2,7 +2,7 @@
 <?php include "./queries/data/get_news.php" ?>
 
 <?php
-  
+
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
   $newsId = $_GET["newsId"];
   if ($newsId) {
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
               </h4>
               <!-- Check for authorization -->
               <?php
-              if ($_SESSION["uid"]) {
+              if (isset($_SESSION["uid"])) {
                 if ($_SESSION["uid"] == $user['id']) {
               ?>
                   <div class="ml-md-3" style="align-self: flex-start;">
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
             </div>
             <!-- Check for authorization -->
             <?php
-            if ($_SESSION["uid"]) {
+            if (isset($_SESSION["uid"])) {
               if ($_SESSION["uid"] == $user['id']) {
             ?>
                 <!-- Modal -->
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
             <div class="post-single-info">
               <ul class="list-inline">
                 <?php
-                if ($_SESSION['uid']) {
+                if (isset($_SESSION['uid'])) {
                   if ($_SESSION['uid'] == $user['id']) {
                 ?>
                     <li>
@@ -196,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
         <div class="widget">
           <div class="widget-author">
             <?php
-            if ($_SESSION['uid']) {
+            if (isset($_SESSION['uid'])) {
               if ($_SESSION['uid'] == $user['id']) {
             ?>
                 <a href="profile.php" class="image">

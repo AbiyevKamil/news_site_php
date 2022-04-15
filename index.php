@@ -19,6 +19,9 @@
           case 'SuccessfullyLoggedin':
             echo 'Welcome back. Check for news :)';
             break;
+          case 'NewsUpdated':
+            echo 'News successfully updated. Now it is checking by admins.';
+            break;
           default:
             echo 'Succeeded';
             break;
@@ -88,7 +91,7 @@
                 <div class="post-card-info">
                   <ul class="list-inline">
                     <?php
-                    if ($_SESSION['uid']) {
+                    if (isset($_SESSION['uid'])) {
                       if ($_SESSION['uid'] == $element['user_id']) {
                     ?>
                         <li>

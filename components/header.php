@@ -111,7 +111,7 @@ session_start();
                 </form>
               </li>
               <li class="nav-item m-0 mr-3">
-                <a class="nav-link" href="/profile.php"> <?= $_SESSION['username'] ?></a>
+                <a class="nav-link" href="profile.php"> <?= $_SESSION['username'] ?></a>
               </li>
             </ul>
           </div>
