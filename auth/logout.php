@@ -8,8 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         header("Location: ../login.php?success=LoggedOut");
     } else {
-        header("Location: index.php");
+        header("Location: ../index.php");
     }
 } else {
-    header("Location: index.php");
+    header("Location: ../index.php");
 }

@@ -84,10 +84,9 @@ session_start();
 
   function sendRecoveryCode(){
     $code = strval(rand(100000,999999));
-    if(empty($_SESSION['emailForReset']) && !isset($_SESSION['emailForReset'])){
-      $_SESSION['emailForReset'] = $_POST['email'];
-    }
-    $to = $_SESSION['emailForReset'];
+    $_SESSION['emailForReset'] = $_POST['email'];
+    
+    $to = $_POST['email'];
 
     $subject = "Password reset request";
     $body = "<h1>Reset your password?</h1> <br>
@@ -98,22 +97,25 @@ session_start();
     $altBody = "AltBody";
     // $date = date("Y/m/d H:i:s");
 
-    $mail = sendMail($to, $subject, $body, $altBody);
+    
+    $save = saveCodeToDB($to, $code);
 
-    if($mail){
-      $save = saveCodeToDB($to, $code);
-      if($save){ 
+    if($save){ 
+      $mail = sendMail($to, $subject, $body, $altBody);
+      if($mail){
         header("Location: ../recoveryCode.php");
       }
       else{
-        header("Location: ../forgetPassword.php?status=codeCouldNotSave");
-        echo "not saved";
+        header("Location: ../forgetPassword.php?status=mailCouldNotSend");
+        echo "not send";
       }
+      
     }
     else{
-      header("Location: ../forgetPassword.php?status=mailCouldNotSend");
-      echo "not send";
-    }
+      header("Location: ../forgetPassword.php?status=codeCouldNotSave");
+      echo "not saved";
+    }      
+    
   }
   sendRecoveryCode();
 ?>
