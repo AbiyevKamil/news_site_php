@@ -1154,6 +1154,32 @@ input:checked + .slider:before {
   margin-bottom: 10px;
 }
 
+.widget-latest-posts {
+  margin-bottom: 14px;
+}
+
+.dark .add-news .form-select {
+  display: block;
+  border-radius: 12px;
+  background-color: #2b2b2b;
+  color: white;
+  padding: 12px 20px;
+  width: 100%;
+  border-color: #1d1d1d;
+  outline: none;
+}
+
+.add-news .form-select {
+  display: block;
+  border-radius: 12px;
+  background-color: #f9f9ff;
+  color: #152035;
+  padding: 12px 20px;
+  width: 100%;
+  border-color: #eee;
+  outline: none;
+}
+
 .widget-latest-posts .last-post {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2518,6 +2544,7 @@ input:checked + .slider:before {
 .dark .search-form input,
 .dark .dropdown-menu {
   background-color: #2b2b2b;
+  color: white;
 }
 
 .dark .post-card,
@@ -2572,8 +2599,13 @@ input:checked + .slider:before {
 .dark .newslettre-info h5,
 .dark .about-us .description .quote p,
 .dark .navbar .nav-item .dropdown-menu .dropdown-item,
-.dark .sign-form .btn-link {
+.dark .sign-form .btn-link,
+.dark .post-single .dropdown * {
   color: #ffffff;
+}
+
+.dark .post-single .dropdown *:hover {
+  color: #1d1d1d;
 }
 
 .dark .navbar-toggler span {

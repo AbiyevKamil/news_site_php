@@ -58,9 +58,9 @@ if (!$_SESSION["uid"]) {
           <label class="label" for="content">Content</label>
           <textarea style="min-height: 300px;" type="text" class="form-control" id="content" name="content" value=""></textarea>
         </div>
-        <div class="form-group select-list">
+        <div class="form-group ">
           <label for="category">Category</label>
-          <select class="form-control" name="category" id="category">
+          <select class="form-select" name="category" id="category">
             <option selected value="">Select category</option>
             <?php foreach ($categories as $category) { ?>
               <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
