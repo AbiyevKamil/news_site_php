@@ -57,6 +57,9 @@ if (isset($_SESSION["uid"])) {
                         case 'passwordResetedSuccessfully':
                             echo 'Password reset successfully.';
                             break;
+                        case 'Approved':
+                            echo 'Account approved successfully. Now you can login.';
+                            break;
                         default:
                             echo 'Oops, something went wrong. Please try again :(';
                             break;

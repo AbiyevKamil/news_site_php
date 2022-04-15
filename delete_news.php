@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '/AppServ/www/sdf/news_site_php/queries/run_query.php';
 if (!$_SESSION["uid"]) {
   header("Location: index.php?status=Unauthorized");
@@ -17,20 +18,15 @@ if (!$_SESSION["uid"]) {
           header("Location: index.php?status=Unauthorized");
       }
 
-      $sql = "UPDATE `news` SET `is_deleted` = b'1', `is_approved` = b'0' WHERE `news`.`id` = $id;";
-      $sqlUserCheck = "select id from news where is_deleted = 0 and is_approved = 1 and id = 1 and user_id = '$user_id';";
+      $sqlDelete = "UPDATE `news` SET `is_deleted` = b'1', `is_approved` = b'0' WHERE `news`.`id` = $id;";
+      $sqlUserCheck = "select id from news where is_deleted = 0 and is_approved = 1 and id = $id and user_id = '$user_id';";
       $queryUserCheck = runQuery($sqlUserCheck);
       if ($queryUserCheck) {
-        $count = mysqli_num_rows($queryUserCheck);
-        if ($count > 0) {
-          $query = runQuery($sql);
-          if ($query) {
-            $deleted = mysqli_affected_rows($query);
-            if ($deleted > 0) {
-              header("Location: index.php?success=SuccessfullyDeletedNews");
-            } else {
-              header("Location: index.php?status=SomethingWentWrongWhileNewsDelete");
-            }
+        $newsID = mysqli_fetch_assoc($queryUserCheck)['id'];
+        if ($newsID) {
+          $queryDelete = runQuery($sqlDelete);
+          if ($queryDelete) {
+            header("Location: index.php?success=SuccessfullyDeletedNews");
           } else {
             header("Location: index.php?status=SomethingWentWrongWhileNewsDelete");
           }

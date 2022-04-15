@@ -19,6 +19,9 @@
           case 'SuccessfullyLoggedin':
             echo 'Welcome back. Check for news :)';
             break;
+          case 'NewsUpdated':
+            echo 'News successfully updated. Now it is checking by admins.';
+            break;
           default:
             echo 'Succeeded';
             break;
@@ -44,6 +47,9 @@
             break;
           case 'UserNotFound':
             echo 'User not found. The user you try to find is deleted or has never been existed.';
+            break;
+          case 'AlreadyLoggedIn':
+            echo 'You are already logged in.';
             break;
           default:
             echo 'Oops, something went wrong. Try again :(';
@@ -85,7 +91,7 @@
                 <div class="post-card-info">
                   <ul class="list-inline">
                     <?php
-                    if ($_SESSION['uid']) {
+                    if (isset($_SESSION['uid'])) {
                       if ($_SESSION['uid'] == $element['user_id']) {
                     ?>
                         <li>

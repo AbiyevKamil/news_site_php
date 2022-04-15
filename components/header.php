@@ -106,10 +106,12 @@ session_start();
           <div class="">
             <ul style="padding: 0 !important" class="navbar-nav d-flex flex-row align-items-center justify-content-center">
               <li class="nav-item m-0">
-                <a class="nav-link m-0" href="auth/logout.php"> Logout </a>
+                <form method="POST" action="auth/logout.php">
+                  <button class="mr-3 btn btn-sm btn-danger" type="submit">Logout</button>
+                </form>
               </li>
               <li class="nav-item m-0 mr-3">
-                <a class="nav-link" href="/profile.php"> <?= $_SESSION['username'] ?></a>
+                <a class="nav-link" href="profile.php"> <?= $_SESSION['username'] ?></a>
               </li>
             </ul>
           </div>

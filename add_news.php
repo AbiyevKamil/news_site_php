@@ -1,6 +1,7 @@
 <?php
+session_start();
 require '/AppServ/www/sdf/news_site_php/queries/run_query.php';
-if ($_SESSION['uid']) {
+if (!$_SESSION['uid']) {
   header("Location: index.php?status=Unauthorized");
 } else {
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {

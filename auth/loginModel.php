@@ -18,7 +18,6 @@ function getUser($username, $password)
                 $userApproved = mysqli_query($connection, $queryApproved);
                 $userFound = mysqli_num_rows($userApproved);
                 // setcookie("uid", $row['id']);
-                $_SESSION['uid'] = $row['id'];
                 $_SESSION['username'] = $row['user_name'];
                 $_SESSION['email'] = $row['email'];
                 // if(!empty($_POST['rememberMe'])){
@@ -27,8 +26,10 @@ function getUser($username, $password)
                 //     setcookie('passwordCoo', $row['password'], time()+86400*3);
                 // }
                 if ($userFound == 0) {
+                    $_SESSION['uidNA'] = $row['id'];
                     header("Location: ../notApproved.php");
                 } else {
+                    $_SESSION['uid'] = $row['id'];
                     header("Location: ../index.php?success=SuccessfullyLoggedin");
                 }
             }
